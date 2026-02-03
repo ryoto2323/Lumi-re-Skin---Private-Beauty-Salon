@@ -1,5 +1,5 @@
 import React from 'react';
-import { SectionId, MENU_ITEMS, GALLERY_IMAGES } from '../constants';
+import { SectionId, MENU_ITEMS } from '../constants';
 import { Button } from './ui/Button';
 import { ScrollReveal } from './ui/ScrollReveal';
 import { Check, Sparkles } from 'lucide-react';
@@ -33,7 +33,7 @@ export const Menu: React.FC<MenuProps> = ({ onBook }) => {
              <div className="relative bg-white shadow-2xl border border-white/50 overflow-hidden">
                 <div className="h-64 overflow-hidden relative">
                    <img 
-                    src={GALLERY_IMAGES[1].src} 
+                    src="https://github.com/ryoto2323/Lumi-re-Skin---Private-Beauty-Salon/blob/main/i.png?raw=true" 
                     alt="Treatment" 
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
                    />
