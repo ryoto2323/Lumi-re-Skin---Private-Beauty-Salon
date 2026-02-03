@@ -94,7 +94,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onBook }) => {
 
       {/* Mobile Menu Overlay */}
       <div 
-        className={`fixed inset-0 bg-base/95 backdrop-blur-md z-40 transition-all duration-500 lg:hidden flex items-center justify-center ${
+        className={`fixed inset-0 bg-canvas/95 backdrop-blur-md z-40 transition-all duration-500 lg:hidden flex items-center justify-center ${
           isMobileMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
         }`}
       >

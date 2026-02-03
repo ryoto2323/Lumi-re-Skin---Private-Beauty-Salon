@@ -4,7 +4,7 @@ import { ScrollReveal } from './ui/ScrollReveal';
 
 export const Voice: React.FC = () => {
   return (
-    <section id={SectionId.VOICE} className="py-24 md:py-32 bg-base border-t border-white">
+    <section id={SectionId.VOICE} className="py-24 md:py-32 bg-canvas border-t border-white">
       <div className="container mx-auto px-6 md:px-12">
         <ScrollReveal>
           <div className="text-center mb-16">
@@ -20,11 +20,11 @@ export const Voice: React.FC = () => {
             <ScrollReveal key={review.id} delay={idx * 0.2}>
               <div className="bg-white p-8 md:p-10 shadow-sm border border-gray-50 relative h-full">
                 <div className="font-eng text-6xl text-main/20 absolute top-4 left-6">"</div>
-                <p className="font-sans font-light text-sm md:text-base leading-loose text-text mb-6 relative z-10">
+                <p className="font-sans font-light text-base md:text-lg leading-loose text-text mb-6 relative z-10">
                   {review.comment}
                 </p>
                 <div className="text-right">
-                   <span className="font-sans text-xs text-text-light border-t border-gray-100 pt-2 inline-block px-4">
+                   <span className="font-sans text-sm text-text-light border-t border-gray-100 pt-2 inline-block px-4">
                      {review.age}
                    </span>
                 </div>

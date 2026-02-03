@@ -27,7 +27,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose }) =
     <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
       <div className="absolute inset-0 bg-[#4A4A4A]/60 backdrop-blur-md transition-opacity" onClick={onClose} />
       
-      <div className="relative w-full max-w-xl bg-base shadow-2xl overflow-hidden border border-white/30 animate-fade-in-up flex flex-col max-h-[90vh]">
+      <div className="relative w-full max-w-xl bg-canvas shadow-2xl overflow-hidden border border-white/30 animate-fade-in-up flex flex-col max-h-[90vh]">
         <button onClick={onClose} className="absolute right-6 top-6 text-text/40 hover:text-accent transition-colors z-10">
           <X size={24} strokeWidth={1} />
         </button>

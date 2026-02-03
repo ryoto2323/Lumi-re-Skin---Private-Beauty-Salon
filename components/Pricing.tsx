@@ -10,16 +10,16 @@ interface MenuProps {
 
 export const Menu: React.FC<MenuProps> = ({ onBook }) => {
   return (
-    <section id={SectionId.MENU} className="py-24 md:py-40 bg-base">
+    <section id={SectionId.MENU} className="py-24 md:py-40 bg-canvas">
       <div className="container mx-auto px-6 md:px-12">
         
         <ScrollReveal>
           <div className="text-center mb-24">
-            <span className="font-eng text-accent tracking-extreme text-xs block mb-6 uppercase">Menu & Price</span>
+            <span className="font-eng text-accent tracking-extreme text-sm block mb-6 uppercase">Menu & Price</span>
             <h2 className="text-2xl md:text-4xl font-mincho font-medium text-text tracking-widest mb-10 leading-airy">
               あなたに最適なプランを
             </h2>
-            <p className="font-sans font-light text-sm md:text-base text-text leading-airy tracking-airy max-w-2xl mx-auto">
+            <p className="font-sans font-light text-base md:text-lg text-text leading-airy tracking-airy max-w-2xl mx-auto">
               必要な回数を、明確な価格で。<br className="hidden md:block"/>
               入会金・追加料金はいっさいございません。
             </p>
@@ -43,17 +43,17 @@ export const Menu: React.FC<MenuProps> = ({ onBook }) => {
                    </div>
                 </div>
                 <div className="p-10 text-center">
-                   <h3 className="font-mincho text-2xl text-text mb-4 tracking-widest">{MENU_ITEMS.pickup.name}</h3>
+                   <h3 className="font-mincho text-2xl md:text-3xl text-text mb-4 tracking-widest">{MENU_ITEMS.pickup.name}</h3>
                    <div className="w-12 h-[1px] bg-accent mx-auto mb-6"></div>
-                   <p className="text-sm font-light text-text leading-relaxed mb-8">
+                   <p className="text-base font-light text-text leading-relaxed mb-8">
                      {MENU_ITEMS.pickup.content}
                    </p>
                    <div className="mb-8">
-                      <span className="text-xs text-text-light line-through mr-3">通常 {MENU_ITEMS.pickup.price_original}</span>
-                      <span className="font-eng text-4xl text-accent font-medium">{MENU_ITEMS.pickup.price_discount}</span>
-                      <span className="text-xs ml-1">(税込)</span>
+                      <span className="text-sm text-text-light line-through mr-3">通常 {MENU_ITEMS.pickup.price_original}</span>
+                      <span className="font-eng text-5xl text-accent font-medium">{MENU_ITEMS.pickup.price_discount}</span>
+                      <span className="text-sm ml-1">(税込)</span>
                    </div>
-                   <Button fullWidth onClick={onBook}>まずは体験する</Button>
+                   <Button fullWidth onClick={onBook} className="text-base">まずは体験する</Button>
                 </div>
              </div>
           </ScrollReveal>
@@ -63,29 +63,29 @@ export const Menu: React.FC<MenuProps> = ({ onBook }) => {
              <div className="bg-white/60 backdrop-blur-md p-8 md:p-12 border border-white/50 shadow-sm rounded-sm">
                 <div className="flex items-center gap-3 mb-8">
                   <Sparkles size={18} className="text-accent" />
-                  <h3 className="font-eng text-lg tracking-widest text-text">Standard Menu</h3>
+                  <h3 className="font-eng text-xl tracking-widest text-text">Standard Menu</h3>
                 </div>
                 
                 <ul className="space-y-8">
                   {MENU_ITEMS.normal.map((item, idx) => (
                     <li key={idx} className="group">
                       <div className="flex justify-between items-baseline mb-2">
-                        <span className="font-mincho font-medium text-lg text-text group-hover:text-accent transition-colors tracking-wide">
+                        <span className="font-mincho font-medium text-xl text-text group-hover:text-accent transition-colors tracking-wide">
                           {item.name}
                         </span>
-                        <span className="font-eng text-lg text-text/80">{item.price}</span>
+                        <span className="font-eng text-xl text-text/80">{item.price}</span>
                       </div>
                       <div className="w-full h-[1px] bg-gray-200 group-hover:bg-accent/30 transition-colors origin-left"></div>
                     </li>
                   ))}
                 </ul>
 
-                <div className="mt-12 bg-[#F9F8F6] p-6 rounded-sm">
-                   <h4 className="font-mincho text-sm mb-3 text-text tracking-wide">含まれるサービス</h4>
+                <div className="mt-12 bg-canvas p-6 rounded-sm">
+                   <h4 className="font-mincho text-base mb-3 text-text tracking-wide">含まれるサービス</h4>
                    <div className="grid grid-cols-2 gap-3">
                       {['カウンセリング無料', 'シェービング補助', '肌トラブル保証', 'アフターケア'].map((s, i) => (
-                        <div key={i} className="flex items-center gap-2 text-xs text-text-light">
-                           <Check size={12} className="text-accent" />
+                        <div key={i} className="flex items-center gap-2 text-sm text-text-light">
+                           <Check size={14} className="text-accent" />
                            {s}
                         </div>
                       ))}

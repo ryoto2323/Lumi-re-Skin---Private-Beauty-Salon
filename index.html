@@ -53,7 +53,7 @@
               serif: ['"Cormorant Garamond"', 'serif'],
             },
             colors: {
-              base: '#F9F8F6',
+              canvas: '#F9F8F6',
               main: '#D8C6C6', 
               accent: '#BFA588', 
               text: '#4A4A4A', 
@@ -104,15 +104,7 @@
         color: #4A4A4A;
         letter-spacing: 0.0em; 
         line-height: 1.75;
-        line-break: strict;
-        overflow-wrap: anywhere;
-        /* モバイルでの視認性向上のため、font-weightを少し調整 */
         font-weight: 400; 
-      }
-      @media (min-width: 768px) {
-        body {
-          font-weight: 300; /* PCでは繊細さを優先 */
-        }
       }
       body::before {
         content: "";
@@ -150,7 +142,7 @@
 }
 </script>
 </head>
-  <body class="bg-base text-text antialiased selection:bg-accent selection:text-white">
+  <body class="bg-canvas text-text antialiased selection:bg-accent selection:text-white">
     <div id="root"></div>
     <script type="module" src="/index.tsx"></script>
   </body>

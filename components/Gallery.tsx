@@ -39,7 +39,7 @@ export const Gallery: React.FC = () => {
       {/* Lightbox Overlay */}
       {selectedImage && (
         <div 
-          className="fixed inset-0 z-[60] bg-base/90 backdrop-blur-md flex items-center justify-center p-4 animate-fade-in"
+          className="fixed inset-0 z-[60] bg-canvas/90 backdrop-blur-md flex items-center justify-center p-4 animate-fade-in"
           onClick={() => setSelectedImage(null)}
         >
           <button 

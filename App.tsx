@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
@@ -38,7 +37,7 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="relative min-h-screen bg-base overflow-x-hidden">
+    <div className="relative min-h-screen bg-canvas overflow-x-hidden">
       {/* Opening Animation Component */}
       {!isOpeningDone && <OpeningScreen onComplete={() => setIsOpeningDone(true)} />}
 

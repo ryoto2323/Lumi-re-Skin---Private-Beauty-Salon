@@ -37,7 +37,6 @@ export const ChatWidget: React.FC = () => {
       const height = window.innerHeight;
       
       // Determine context based on scroll position (rough estimation)
-      // Note: In a real app, IntersectionObserver is better, but this is simple and effective.
       const machineSection = document.getElementById(SectionId.MACHINE)?.offsetTop || 0;
       const menuSection = document.getElementById(SectionId.MENU)?.offsetTop || 0;
       const accessSection = document.getElementById(SectionId.ACCESS)?.offsetTop || 0;
@@ -155,7 +154,7 @@ export const ChatWidget: React.FC = () => {
           </div>
 
           {/* Messages */}
-          <div className="h-80 overflow-y-auto bg-base p-5">
+          <div className="h-80 overflow-y-auto bg-canvas p-5">
             {messages.map((msg, idx) => (
               <div key={idx} className={`mb-6 flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
                 <div 
@@ -187,7 +186,7 @@ export const ChatWidget: React.FC = () => {
                   key={idx}
                   onClick={() => handleSend(suggestion)}
                   disabled={isLoading}
-                  className="inline-block px-3 py-1.5 bg-base border border-accent/20 rounded-full text-xs text-text hover:bg-accent hover:text-white transition-colors disabled:opacity-50"
+                  className="inline-block px-3 py-1.5 bg-canvas border border-accent/20 rounded-full text-xs text-text hover:bg-accent hover:text-white transition-colors disabled:opacity-50"
                 >
                   {suggestion}
                 </button>

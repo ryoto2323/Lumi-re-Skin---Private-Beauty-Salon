@@ -10,26 +10,26 @@ export const Introduction: React.FC = () => {
   ];
 
   return (
-    <section id={SectionId.CONCEPT} className="py-24 md:py-40 bg-base relative">
+    <section id={SectionId.CONCEPT} className="py-24 md:py-40 bg-canvas relative">
       <div className="container mx-auto px-6 md:px-12">
         <ScrollReveal>
-          <div className="max-w-2xl mx-auto text-center">
-            <h2 className="text-xl md:text-3xl font-mincho font-medium text-text mb-20 tracking-widest leading-airy px-4">
+          <div className="max-w-3xl mx-auto text-center">
+            <h2 className="text-2xl md:text-4xl font-mincho font-medium text-text mb-20 tracking-widest leading-airy px-4">
               <span className="phrase">サロン選びに</span><br className="md:hidden"/><span className="phrase">疲れてしまったあなたへ</span>
             </h2>
             
             {/* Troubles Section */}
             <div className="space-y-6 mb-24 px-4">
               {troubles.map((text, i) => (
-                <div key={i} className="bg-white/60 backdrop-blur-sm border border-main/20 p-6 md:p-8 rounded-sm shadow-sm flex items-center justify-center text-center">
-                  <p className="font-sans font-light text-text leading-airy tracking-relaxed text-sm md:text-base">
+                <div key={i} className="bg-white/60 backdrop-blur-sm border border-main/20 p-6 md:p-8 rounded-sm shadow-sm flex flex-col items-center justify-center text-center">
+                  <p className="font-sans font-normal text-text leading-airy tracking-relaxed text-base md:text-lg w-full">
                     {text}
                   </p>
                 </div>
               ))}
             </div>
 
-            <div className="space-y-12 font-sans font-light text-text leading-airy tracking-relaxed text-sm md:text-base px-6">
+            <div className="space-y-12 font-sans font-light text-text leading-airy tracking-relaxed text-base md:text-lg px-6">
               <p>
                 <span className="phrase">もしあなたがそんな経験をお持ちなら、</span><br/>
                 <span className="phrase">Lumière Skinが最後のサロンになります。</span>

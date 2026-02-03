@@ -12,8 +12,8 @@ export const Access: React.FC = () => {
             {/* Info */}
             <div className="order-2 md:order-1 flex flex-col justify-center">
                 <div className="mb-8 border-l-4 border-sky-500 pl-4">
-                  <span className="text-sky-500 font-bold tracking-wider text-xs uppercase block mb-1">Access</span>
-                  <h2 className="text-2xl md:text-3xl font-bold text-slate-800 font-serif">店舗情報・アクセス</h2>
+                  <span className="text-sky-500 font-bold tracking-wider text-sm uppercase block mb-1">Access</span>
+                  <h2 className="text-3xl md:text-4xl font-bold text-slate-800 font-serif">店舗情報・アクセス</h2>
                 </div>
                 
                 <div className="bg-sky-50/50 rounded-2xl p-6 md:p-8 space-y-6 md:space-y-8">
@@ -22,8 +22,8 @@ export const Access: React.FC = () => {
                            <MapPin size={20} />
                         </div>
                         <div className="flex-1">
-                            <h4 className="font-bold text-slate-800 mb-1 text-lg font-serif">Silky 銀座本店</h4>
-                            <p className="text-slate-600 leading-relaxed text-sm md:text-base mb-3">
+                            <h4 className="font-bold text-slate-800 mb-1 text-xl font-serif">Silky 銀座本店</h4>
+                            <p className="text-slate-600 leading-relaxed text-base md:text-lg mb-3">
                               〒104-0061<br/>
                               東京都中央区銀座 4-1-2<br/>
                               銀座駅 C4出口 徒歩1分
@@ -32,9 +32,9 @@ export const Access: React.FC = () => {
                               href="https://www.google.com/maps/search/?api=1&query=銀座4-1-2" 
                               target="_blank" 
                               rel="noopener noreferrer"
-                              className="inline-flex items-center gap-1 text-xs text-sky-600 font-bold border border-sky-200 bg-white px-3 py-1.5 rounded-full hover:bg-sky-50 transition-colors"
+                              className="inline-flex items-center gap-1 text-sm text-sky-600 font-bold border border-sky-200 bg-white px-3 py-1.5 rounded-full hover:bg-sky-50 transition-colors"
                             >
-                              Googleマップで開く <ExternalLink size={12} />
+                              Googleマップで開く <ExternalLink size={14} />
                             </a>
                         </div>
                     </div>
@@ -44,8 +44,8 @@ export const Access: React.FC = () => {
                            <Phone size={20} />
                         </div>
                         <div>
-                            <h4 className="font-bold text-slate-800 mb-1 font-serif">ご予約・お問い合わせ</h4>
-                            <a href="tel:0312345678" className="text-slate-800 text-xl md:text-2xl font-bold font-sans hover:text-sky-500 transition-colors block">
+                            <h4 className="font-bold text-slate-800 mb-1 text-lg font-serif">ご予約・お問い合わせ</h4>
+                            <a href="tel:0312345678" className="text-slate-800 text-2xl md:text-3xl font-bold font-sans hover:text-sky-500 transition-colors block">
                               03-1234-5678
                             </a>
                         </div>
@@ -56,12 +56,12 @@ export const Access: React.FC = () => {
                            <Clock size={20} />
                         </div>
                         <div>
-                            <h4 className="font-bold text-slate-800 mb-1 font-serif">営業時間</h4>
-                            <p className="text-slate-600 text-sm md:text-base">
+                            <h4 className="font-bold text-slate-800 mb-1 text-lg font-serif">営業時間</h4>
+                            <p className="text-slate-600 text-base md:text-lg">
                               平日 11:00〜21:00<br/>
                               土日祝 10:00〜20:00
                             </p>
-                            <p className="text-xs text-slate-500 mt-2 bg-white inline-block px-2 py-1 rounded border border-sky-100">
+                            <p className="text-sm text-slate-500 mt-2 bg-white inline-block px-2 py-1 rounded border border-sky-100">
                               定休日：火曜日・年末年始
                             </p>
                         </div>

@@ -27,7 +27,7 @@ export const Machine: React.FC = () => {
     <section ref={sectionRef} id={SectionId.MACHINE} className="py-24 md:py-40 bg-white relative overflow-hidden">
       {/* Parallax Background Element */}
       <div 
-        className="absolute top-0 right-0 w-1/3 h-[120%] bg-base/30 -skew-x-12 transform translate-x-1/2 transition-transform duration-75 ease-out" 
+        className="absolute top-0 right-0 w-1/3 h-[120%] bg-canvas/30 -skew-x-12 transform translate-x-1/2 transition-transform duration-75 ease-out" 
         style={{ transform: `translateX(50%) skewX(-12deg) translateY(${offsetY * -1.5}px)` }}
       />
       
@@ -56,7 +56,7 @@ export const Machine: React.FC = () => {
               
               <div className="space-y-10">
                 <div className="flex gap-6 group">
-                  <div className="w-12 h-12 rounded-full bg-base flex items-center justify-center text-accent flex-shrink-0 transition-colors duration-500 group-hover:bg-accent group-hover:text-white">
+                  <div className="w-12 h-12 rounded-full bg-canvas flex items-center justify-center text-accent flex-shrink-0 transition-colors duration-500 group-hover:bg-accent group-hover:text-white">
                     <ShieldCheck size={24} strokeWidth={1} />
                   </div>
                   <div>
@@ -68,7 +68,7 @@ export const Machine: React.FC = () => {
                 </div>
 
                 <div className="flex gap-6 group">
-                  <div className="w-12 h-12 rounded-full bg-base flex items-center justify-center text-accent flex-shrink-0 transition-colors duration-500 group-hover:bg-accent group-hover:text-white">
+                  <div className="w-12 h-12 rounded-full bg-canvas flex items-center justify-center text-accent flex-shrink-0 transition-colors duration-500 group-hover:bg-accent group-hover:text-white">
                     <Sparkles size={24} strokeWidth={1} />
                   </div>
                   <div>
@@ -80,7 +80,7 @@ export const Machine: React.FC = () => {
                 </div>
 
                 <div className="flex gap-6 group">
-                  <div className="w-12 h-12 rounded-full bg-base flex items-center justify-center text-accent flex-shrink-0 transition-colors duration-500 group-hover:bg-accent group-hover:text-white">
+                  <div className="w-12 h-12 rounded-full bg-canvas flex items-center justify-center text-accent flex-shrink-0 transition-colors duration-500 group-hover:bg-accent group-hover:text-white">
                     <Heart size={24} strokeWidth={1} />
                   </div>
                   <div>

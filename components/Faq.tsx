@@ -11,7 +11,7 @@ export const Faq: React.FC = () => {
   };
 
   return (
-    <section id={SectionId.FAQ} className="py-24 md:py-32 bg-base">
+    <section id={SectionId.FAQ} className="py-24 md:py-32 bg-canvas">
       <div className="container mx-auto px-6 md:px-12 max-w-3xl">
         <ScrollReveal>
           <div className="text-center mb-16">
@@ -31,8 +31,8 @@ export const Faq: React.FC = () => {
                   onClick={() => toggleFaq(idx)}
                 >
                   <div className="flex items-start gap-4 pr-4">
-                    <span className="font-eng text-accent text-lg">Q{idx + 1}</span>
-                    <span className="font-mincho text-text tracking-wide leading-relaxed">{faq.question}</span>
+                    <span className="font-eng text-accent text-xl">Q{idx + 1}</span>
+                    <span className="font-mincho text-text tracking-wide leading-relaxed text-lg">{faq.question}</span>
                   </div>
                   <div className="text-accent/50 flex-shrink-0">
                     {openIndex === idx ? <Minus size={16} /> : <Plus size={16} />}
@@ -43,7 +43,7 @@ export const Faq: React.FC = () => {
                     openIndex === idx ? 'max-h-48 opacity-100' : 'max-h-0 opacity-0'
                   }`}
                 >
-                  <div className="pb-8 pl-10 pr-4 text-text font-sans font-light text-sm leading-loose">
+                  <div className="pb-8 pl-10 pr-4 text-text font-sans font-light text-base leading-loose">
                     <span className="font-eng text-text-light mr-2">A.</span>
                     {faq.answer}
                   </div>
