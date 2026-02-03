@@ -20,10 +20,10 @@ export const Machine: React.FC = () => {
 
           <div className="w-full md:w-1/2 text-center md:text-left">
             <ScrollReveal delay={0.2}>
-              <h2 className="text-2xl md:text-3xl font-mincho text-text tracking-widest mb-8 leading-relaxed">
-                「痛くない」には、<br/>理由があります。
+              <h2 className="text-xl md:text-3xl font-mincho text-text tracking-widest mb-8 leading-relaxed">
+                「痛くない」には理由があります。
               </h2>
-              <div className="font-sans font-light text-text leading-loose tracking-relaxed space-y-6">
+              <div className="font-sans font-light text-text leading-loose tracking-relaxed space-y-6 text-sm md:text-base text-justify md:text-left">
                 <p>
                   日本人の繊細な肌に合わせて開発された、最新の「SHR方式」マシンを採用。
                 </p>

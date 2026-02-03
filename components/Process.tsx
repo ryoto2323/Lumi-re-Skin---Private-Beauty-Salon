@@ -34,7 +34,7 @@ export const Flow: React.FC = () => {
                     <div className="flex flex-col gap-2">
                       <span className="font-eng text-main text-sm tracking-widest">Step.0{idx + 1}</span>
                       <h3 className="font-mincho text-lg text-text tracking-widest mb-2">{step.title}</h3>
-                      <p className="font-sans font-light text-sm leading-loose text-text/80">
+                      <p className="font-sans font-light text-sm leading-loose text-text">
                         {step.desc}
                       </p>
                     </div>

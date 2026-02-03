@@ -15,11 +15,11 @@ export const Menu: React.FC<MenuProps> = ({ onBook }) => {
         <ScrollReveal>
           <div className="text-center mb-16">
             <span className="font-eng text-accent tracking-[0.2em] text-sm block mb-4">Menu & Price</span>
-            <h2 className="text-2xl md:text-3xl font-mincho text-text tracking-widest mb-6">
-              分かりやすさと、誠実さを大切に。
+            <h2 className="text-xl md:text-3xl font-mincho text-text tracking-widest mb-6">
+              分かりやすさと誠実さを大切に。
             </h2>
-            <p className="font-sans font-light text-sm md:text-base text-text/80 leading-loose">
-              複雑な条件や、強引なローンの勧誘は一切ございません。<br/>
+            <p className="font-sans font-light text-sm md:text-base text-text leading-loose">
+              複雑な条件や、強引なローンの勧誘は一切ございません。<br className="hidden md:block"/>
               必要な回数を、明確な価格でご提案します。
             </p>
           </div>
@@ -35,7 +35,7 @@ export const Menu: React.FC<MenuProps> = ({ onBook }) => {
               <h3 className="font-mincho text-xl md:text-2xl text-text mb-4 tracking-widest">
                 {MENU_ITEMS.pickup.name}
               </h3>
-              <p className="font-sans font-light text-sm text-text/70 mb-6">
+              <p className="font-sans font-light text-sm text-text/90 mb-6">
                 {MENU_ITEMS.pickup.content}
               </p>
               <div className="flex justify-center items-baseline gap-4 mb-8">

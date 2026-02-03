@@ -43,7 +43,7 @@ export const Faq: React.FC = () => {
                     openIndex === idx ? 'max-h-48 opacity-100' : 'max-h-0 opacity-0'
                   }`}
                 >
-                  <div className="pb-8 pl-10 pr-4 text-text/80 font-sans font-light text-sm leading-loose">
+                  <div className="pb-8 pl-10 pr-4 text-text font-sans font-light text-sm leading-loose">
                     <span className="font-eng text-text-light mr-2">A.</span>
                     {faq.answer}
                   </div>

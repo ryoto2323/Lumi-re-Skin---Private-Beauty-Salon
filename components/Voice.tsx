@@ -19,7 +19,7 @@ export const Voice: React.FC = () => {
           {REVIEWS.map((review, idx) => (
             <ScrollReveal key={review.id} delay={idx * 0.2}>
               <div className="bg-white p-8 md:p-10 shadow-sm border border-gray-50 relative h-full">
-                <div className="font-eng text-6xl text-main/10 absolute top-4 left-6">"</div>
+                <div className="font-eng text-6xl text-main/20 absolute top-4 left-6">"</div>
                 <p className="font-sans font-light text-sm md:text-base leading-loose text-text mb-6 relative z-10">
                   {review.comment}
                 </p>

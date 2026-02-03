@@ -35,7 +35,7 @@ export const Hero: React.FC<HeroProps> = ({ onBook }) => {
           {/* Main Copy - Vertical or Centered based on screen */}
           <div className="hidden md:block vertical-text h-[400px]">
             <h2 className="text-3xl lg:text-4xl font-mincho font-medium leading-loose text-text tracking-widest whitespace-nowrap animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
-              もう、脱毛で迷わない。
+              もう脱毛で迷わない。
             </h2>
             <h2 className="text-3xl lg:text-4xl font-mincho font-medium leading-loose text-text tracking-widest whitespace-nowrap mt-6 animate-fade-in-up" style={{ animationDelay: '0.5s' }}>
               大人のための、美肌・オーダーメイド脱毛。
@@ -44,8 +44,8 @@ export const Hero: React.FC<HeroProps> = ({ onBook }) => {
 
            {/* Mobile Copy */}
            <div className="md:hidden text-center space-y-6">
-            <h2 className="text-2xl font-mincho font-medium leading-relaxed text-text tracking-widest animate-fade-in-up">
-              もう、脱毛で迷わない。<br/>
+            <h2 className="text-xl font-mincho font-medium leading-relaxed text-text tracking-widest animate-fade-in-up">
+              もう脱毛で迷わない。<br/>
               大人のための、<br/>美肌・オーダーメイド脱毛。
             </h2>
           </div>
@@ -53,9 +53,9 @@ export const Hero: React.FC<HeroProps> = ({ onBook }) => {
           {/* Sub Copy & CTA */}
           <div className="md:pt-12 text-center md:text-left animate-fade-in-up" style={{ animationDelay: '0.8s' }}>
             <p className="font-sans font-light text-sm md:text-base leading-loose tracking-widest text-text mb-10">
-              「予約が取れる」当たり前を、約束します。<br className="hidden md:block"/>
-              丁寧なカウンセリングと、あなただけの専任担当制サロン。<br className="hidden md:block"/>
-              肌に、光と自信を。
+              「予約が取れる」当たり前を約束します。<br/>
+              丁寧なカウンセリングとあなただけの専任担当制サロン<br/>
+              肌に、光と自信を
             </p>
             <Button variant="outline" onClick={onBook} className="bg-white/50 backdrop-blur-sm border-text text-text hover:bg-text hover:text-white">
               初回限定トライアルを見る

@@ -42,13 +42,13 @@ export const Offer: React.FC<OfferProps> = ({ onBook }) => {
                   <h3 className="text-xl md:text-3xl font-bold text-slate-800 font-serif mb-3 leading-tight">
                     {CAMPAIGN_PLAN.name}
                   </h3>
-                  <p className="text-slate-600 text-sm">{CAMPAIGN_PLAN.description}</p>
+                  <p className="text-slate-700 text-sm">{CAMPAIGN_PLAN.description}</p>
                 </div>
                 
                 <div className="flex flex-col mb-8">
                   <div className="flex items-center gap-2 mb-1">
                      <span className="text-xs md:text-sm font-bold bg-slate-200 text-slate-600 px-2 py-0.5 rounded">通常価格</span>
-                     <span className="text-slate-400 text-sm md:text-base line-through font-bold font-sans">{CAMPAIGN_PLAN.originalPrice}</span>
+                     <span className="text-slate-500 text-sm md:text-base line-through font-bold font-sans">{CAMPAIGN_PLAN.originalPrice}</span>
                   </div>
                   <div className="flex items-baseline gap-1 md:gap-2">
                     <span className="text-4xl md:text-6xl font-bold text-rose-500 font-serif tracking-tighter">
@@ -88,7 +88,7 @@ export const Offer: React.FC<OfferProps> = ({ onBook }) => {
             </div>
           </div>
           
-          <p className="text-center text-[10px] md:text-xs text-slate-400 mt-4 md:mt-6">
+          <p className="text-center text-[10px] md:text-xs text-slate-500 mt-4 md:mt-6">
             ※お一人様1回限り。※未成年の方は親権者の同意が必要です。※効果には個人差があります。
           </p>
         </div>

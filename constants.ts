@@ -7,10 +7,10 @@ export const SALON_SUB = "Private Beauty Salon";
 
 export const NAV_LINKS = [
   { label: 'Concept', to: SectionId.CONCEPT },
-  { label: 'News', to: 'news' }, // Added
+  { label: 'News', to: 'news' },
   { label: '3 Promises', to: SectionId.PROMISES },
   { label: 'Menu', to: SectionId.MENU },
-  { label: 'Gallery', to: 'gallery' }, // Added
+  { label: 'Gallery', to: 'gallery' },
   { label: 'Staff & Voice', to: SectionId.STAFF },
   { label: 'Access', to: SectionId.ACCESS },
 ];
@@ -40,19 +40,19 @@ export const PROMISES = [
   {
     no: "01",
     title_en: "Personal Support",
-    title_ja: "肌を知り尽くした、専任担当制。",
+    title_ja: "肌を知り尽くした専任担当制",
     desc: "肌の状態は、季節やホルモンバランスによって繊細に変化します。当店では毎回違うスタッフが担当するのではなく、あなたの肌質・毛質を理解した専任スタッフが卒業までサポート。「今日の肌状態なら、出力をこう調整しましょう」——そんなプロの提案で、最短ルートの美肌へ導きます。"
   },
   {
     no: "02",
     title_en: "Stress Free System",
-    title_ja: "「予約が取れない」をゼロに。会員数限定システム。",
+    title_ja: "「予約が取れない」をゼロに。<br/>会員数限定システム",
     desc: "「契約したのに予約が取れない」というストレスをなくすため、毎月の新規ご入会枠に制限を設けています。既存のお客様の予約枠を最優先に確保し、通いたいペースで確実に通える環境を整えています。21時まで営業しているため、お仕事帰りでも余裕を持って通えます。"
   },
   {
     no: "03",
     title_en: "Beauty Charge",
-    title_ja: "毛をなくすだけじゃない。肌を育てる「イオン導入」。",
+    title_ja: "毛をなくすだけじゃない。<br/>肌を育てる「イオン導入」",
     desc: "当店の脱毛は、ただ毛を減らすだけではありません。照射と同時に、高濃度の美肌成分（ビタミンC誘導体・プラセンタ・ヒアルロン酸）を肌の奥深くまでイオン導入します。脱毛するたびに、黒ずみや乾燥がケアされ、吸いつくような透明感あふれる肌へ。"
   }
 ];

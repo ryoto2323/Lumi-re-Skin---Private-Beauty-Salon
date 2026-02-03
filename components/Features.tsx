@@ -9,8 +9,8 @@ export const Promises: React.FC = () => {
         <ScrollReveal>
           <div className="text-center mb-20">
             <span className="font-eng text-accent tracking-[0.2em] text-sm block mb-4">3 Promises</span>
-            <h2 className="text-2xl md:text-3xl font-mincho text-text tracking-widest">
-              私たちが約束する、3つの「安心」
+            <h2 className="text-xl md:text-3xl font-mincho text-text tracking-widest">
+              私たちが約束する3つの「安心」
             </h2>
           </div>
         </ScrollReveal>
@@ -25,10 +25,11 @@ export const Promises: React.FC = () => {
                 <h3 className="font-eng text-lg text-accent tracking-widest mb-2">
                   {item.title_en}
                 </h3>
-                <h4 className="font-mincho text-lg text-text mb-6 border-b border-text/10 pb-4 w-full">
-                  {item.title_ja}
-                </h4>
-                <p className="font-sans font-light text-sm leading-loose text-text/80 text-justify">
+                <h4 
+                  className="font-mincho text-lg text-text mb-6 border-b border-text/10 pb-4 w-full"
+                  dangerouslySetInnerHTML={{ __html: item.title_ja }}
+                />
+                <p className="font-sans font-light text-sm leading-loose text-text text-justify">
                   {item.desc}
                 </p>
               </div>

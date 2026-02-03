@@ -43,7 +43,7 @@ export const Footer: React.FC = () => {
             </div>
           </div>
 
-          <div className="text-center font-eng text-[10px] tracking-widest text-text/50">
+          <div className="text-center font-eng text-[10px] tracking-widest text-text/70">
              &copy; {SALON_NAME} All Rights Reserved.
           </div>
         </ScrollReveal>

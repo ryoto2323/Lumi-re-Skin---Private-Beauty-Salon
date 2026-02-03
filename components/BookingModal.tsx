@@ -54,7 +54,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose }) =
                   type="text" 
                   required
                   placeholder="山田 花子"
-                  className="w-full bg-white border-b border-gray-300 px-4 py-3 text-text placeholder:text-gray-300 focus:border-accent focus:outline-none transition-colors"
+                  className="w-full bg-white border-b border-gray-300 px-4 py-3 text-text placeholder:text-gray-400 focus:border-accent focus:outline-none transition-colors"
                 />
               </div>
               <div>
@@ -63,7 +63,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose }) =
                   type="email" 
                   required
                   placeholder="example@lumiere.com"
-                  className="w-full bg-white border-b border-gray-300 px-4 py-3 text-text placeholder:text-gray-300 focus:border-accent focus:outline-none transition-colors"
+                  className="w-full bg-white border-b border-gray-300 px-4 py-3 text-text placeholder:text-gray-400 focus:border-accent focus:outline-none transition-colors"
                 />
               </div>
               <div>
@@ -72,7 +72,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose }) =
                   type="tel" 
                   required
                   placeholder="090-1234-5678"
-                  className="w-full bg-white border-b border-gray-300 px-4 py-3 text-text placeholder:text-gray-300 focus:border-accent focus:outline-none transition-colors"
+                  className="w-full bg-white border-b border-gray-300 px-4 py-3 text-text placeholder:text-gray-400 focus:border-accent focus:outline-none transition-colors"
                 />
               </div>
               <div>
@@ -87,7 +87,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose }) =
                 <Button fullWidth type="submit" size="lg" variant="primary">
                   予約を確定する
                 </Button>
-                <p className="text-[10px] text-center text-gray-400 mt-4 font-sans font-light">
+                <p className="text-[10px] text-center text-gray-500 mt-4 font-sans font-light">
                   ご入力いただいた情報は、プライバシーポリシーに基づき厳重に管理いたします。
                 </p>
               </div>
@@ -99,7 +99,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose }) =
               <CheckCircle size={48} strokeWidth={1} />
             </div>
             <h3 className="text-2xl font-mincho text-text tracking-widest mb-4">ご予約ありがとうございます</h3>
-            <p className="text-text/80 font-sans font-light leading-loose mb-10 text-sm">
+            <p className="text-text font-sans font-light leading-loose mb-10 text-sm">
               ご入力いただいたメールアドレスへ確認メールをお送りしました。<br/>
               当日、お会いできることを心より楽しみにしております。
             </p>

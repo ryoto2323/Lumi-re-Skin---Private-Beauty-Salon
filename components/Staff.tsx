@@ -9,11 +9,11 @@ export const Staff: React.FC = () => {
         <ScrollReveal>
           <div className="text-center mb-20">
             <span className="font-eng text-accent tracking-[0.2em] text-sm block mb-4">Staff</span>
-            <h2 className="text-2xl md:text-3xl font-mincho text-text tracking-widest mb-6">
-              私たちが、心を込めて担当します。
+            <h2 className="text-xl md:text-3xl font-mincho text-text tracking-widest mb-6">
+              私たちが心を込めて担当します。
             </h2>
-            <p className="font-sans font-light text-sm md:text-base text-text/80 leading-loose">
-              技術はもちろん、話しやすさ・居心地の良さを大切にしています。<br/>
+            <p className="font-sans font-light text-sm md:text-base text-text leading-loose">
+              技術はもちろん、話しやすさ・居心地の良さを大切にしています。<br className="hidden md:block"/>
               お肌の悩み、ムダ毛の悩み、なんでもお話しください。
             </p>
           </div>
