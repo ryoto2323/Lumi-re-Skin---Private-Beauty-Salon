@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { MessageCircle, X, Send, Sparkles, Loader2 } from 'lucide-react';
 import { GoogleGenAI } from "@google/genai";
-import { Message } from '../types';
+import { Message, SectionId } from '../types';
 
 const SUGGESTIONS = [
   "料金プランについて",
@@ -12,6 +12,7 @@ const SUGGESTIONS = [
 
 export const ChatWidget: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [hasOpened, setHasOpened] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
     { role: 'model', text: 'こんにちは。Lumière Skinのコンシェルジュでございます。お肌のお悩みやプランについて、どのようなことでもご相談くださいませ。' }
   ]);
@@ -26,6 +27,37 @@ export const ChatWidget: React.FC = () => {
   useEffect(() => {
     scrollToBottom();
   }, [messages, isOpen]);
+
+  // Context-aware greeting trigger
+  useEffect(() => {
+    if (isOpen && !hasOpened) {
+      setHasOpened(true);
+      
+      const scrollY = window.scrollY;
+      const height = window.innerHeight;
+      
+      // Determine context based on scroll position (rough estimation)
+      // Note: In a real app, IntersectionObserver is better, but this is simple and effective.
+      const machineSection = document.getElementById(SectionId.MACHINE)?.offsetTop || 0;
+      const menuSection = document.getElementById(SectionId.MENU)?.offsetTop || 0;
+      const accessSection = document.getElementById(SectionId.ACCESS)?.offsetTop || 0;
+
+      let contextMessage = '';
+
+      if (scrollY >= menuSection - height / 2 && scrollY < accessSection) {
+        contextMessage = '料金プランやコースについて、ご不明な点はございませんか？お客様に最適なプランをご提案させていただきます。';
+      } else if (scrollY >= machineSection - height / 2 && scrollY < menuSection) {
+        contextMessage = '当サロンの脱毛機や施術の痛みについて、気になることはございますか？';
+      } else if (scrollY >= accessSection - height / 2) {
+        contextMessage = '店舗の場所やアクセス方法について、ご案内いたしましょうか？';
+      }
+
+      if (contextMessage) {
+        // Replace the default greeting with the context-aware one
+        setMessages([{ role: 'model', text: `こんにちは。${contextMessage}` }]);
+      }
+    }
+  }, [isOpen, hasOpened]);
 
   const handleSend = async (text: string = input) => {
     if (!text.trim() || isLoading) return;

@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { SectionId, SALON_NAME } from '../constants';
 import { Button } from './ui/Button';
 import { ScrollReveal } from './ui/ScrollReveal';
 
 export const Footer: React.FC = () => {
+  const [isMapActive, setIsMapActive] = useState(false);
+
   return (
-    <footer id={SectionId.ACCESS} className="bg-[#EBE9E5] text-text pt-20 pb-12">
+    <footer id="footer" className="bg-[#EBE9E5] text-text pt-20 pb-12">
       <div className="container mx-auto px-6 md:px-12">
         
         <ScrollReveal>
@@ -30,12 +32,21 @@ export const Footer: React.FC = () => {
             </div>
 
             {/* Map */}
-            <div className="w-full md:w-1/2 h-[300px] bg-gray-200 grayscale opacity-80 mix-blend-multiply">
+            <div 
+              className="w-full md:w-1/2 h-[300px] bg-gray-200 grayscale opacity-80 mix-blend-multiply relative group"
+              onClick={() => setIsMapActive(true)}
+              onMouseLeave={() => setIsMapActive(false)}
+            >
+              {!isMapActive && (
+                <div className="absolute inset-0 z-10 flex items-center justify-center cursor-pointer">
+                   <div className="bg-white/80 px-3 py-1 text-[10px] tracking-widest rounded-sm">Click to Interact</div>
+                </div>
+              )}
               <iframe 
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3241.7479754683745!2d139.7644253152588!3d35.673562480196165!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188be4f7467a39%3A0x640b10609b4372a2!2sGinza%20Station!5e0!3m2!1sen!2sjp!4v1625624556424!5m2!1sen!2sjp" 
                 width="100%" 
                 height="100%" 
-                style={{border:0}} 
+                style={{border:0, pointerEvents: isMapActive ? 'auto' : 'none'}} 
                 allowFullScreen={false} 
                 loading="lazy" 
                 title="Google Map"

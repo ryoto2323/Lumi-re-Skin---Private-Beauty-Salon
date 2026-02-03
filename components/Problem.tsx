@@ -3,39 +3,50 @@ import { SectionId } from '../constants';
 import { ScrollReveal } from './ui/ScrollReveal';
 
 export const Introduction: React.FC = () => {
+  const troubles = [
+    "キャンペーンで契約したけど、全然予約が取れない",
+    "毎回スタッフが変わって、悩みを相談できない",
+    "医療脱毛は痛すぎて、通うのが辛くなってしまった"
+  ];
+
   return (
-    <section id={SectionId.CONCEPT} className="py-24 md:py-32 bg-base relative">
+    <section id={SectionId.CONCEPT} className="py-24 md:py-40 bg-base relative">
       <div className="container mx-auto px-6 md:px-12">
         <ScrollReveal>
           <div className="max-w-2xl mx-auto text-center">
-            <h2 className="text-xl md:text-3xl font-mincho font-medium text-text mb-12 tracking-widest leading-loose">
-              サロン選びに<br className="md:hidden"/>疲れてしまったあなたへ
+            <h2 className="text-xl md:text-3xl font-mincho font-medium text-text mb-20 tracking-widest leading-airy px-4">
+              <span className="phrase">サロン選びに</span><br className="md:hidden"/><span className="phrase">疲れてしまったあなたへ</span>
             </h2>
             
-            <div className="space-y-8 font-sans font-light text-text leading-loose tracking-relaxed text-sm md:text-base">
-              <p className="px-0 md:px-0">
-                「キャンペーンで契約したけど、全然予約が取れない」<br className="hidden md:block"/>
-                「毎回スタッフが変わって、悩みを相談できない」<br className="hidden md:block"/>
-                「医療脱毛は痛すぎて、通うのが辛くなってしまった」
+            {/* Troubles Section */}
+            <div className="space-y-6 mb-24 px-4">
+              {troubles.map((text, i) => (
+                <div key={i} className="bg-white/60 backdrop-blur-sm border border-main/20 p-6 md:p-8 rounded-sm shadow-sm flex items-center justify-center text-center">
+                  <p className="font-sans font-light text-text leading-airy tracking-relaxed text-sm md:text-base">
+                    {text}
+                  </p>
+                </div>
+              ))}
+            </div>
+
+            <div className="space-y-12 font-sans font-light text-text leading-airy tracking-relaxed text-sm md:text-base px-6">
+              <p>
+                <span className="phrase">もしあなたがそんな経験をお持ちなら、</span><br/>
+                <span className="phrase">Lumière Skinが最後のサロンになります。</span>
               </p>
               
-              <p className="px-0 md:px-0">
-                もしあなたがそんな経験をお持ちなら、<br className="md:hidden"/>
-                Lumière Skinが最後のサロンになります。
+              <p>
+                <span className="phrase">私たちが大切にしているのは、</span><br/>
+                <strong className="font-medium border-b border-main pb-1 phrase">「流れ作業ではない、一人ひとりに寄り添う脱毛」</strong>
               </p>
               
-              <p className="px-0 md:px-0">
-                私たちが大切にしているのは、<br className="md:hidden"/>
-                <strong className="font-medium border-b border-main pb-1">「流れ作業ではない、一人ひとりに寄り添う脱毛」</strong>。
-              </p>
-              
-              <p className="px-0 md:px-0">
-                大型店にはできない、<br className="md:hidden"/>
-                きめ細やかなおもてなしをお約束します。
+              <p>
+                <span className="phrase">大型店にはできない、</span><br/>
+                <span className="phrase">きめ細やかなおもてなしをお約束します。</span>
               </p>
             </div>
             
-            <div className="mt-16 w-[1px] h-24 bg-accent/30 mx-auto"></div>
+            <div className="mt-24 w-[1px] h-32 bg-accent/20 mx-auto"></div>
           </div>
         </ScrollReveal>
       </div>

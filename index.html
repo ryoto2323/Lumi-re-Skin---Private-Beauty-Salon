@@ -10,6 +10,39 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Noto+Sans+JP:wght@300;400;500&family=Shippori+Mincho:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BeautySalon",
+      "name": "Lumière Skin",
+      "image": "https://github.com/ryoto2323/Lumi-re-Skin---Private-Beauty-Salon/blob/main/a.png?raw=true",
+      "description": "銀座にある大人のための美肌・オーダーメイド脱毛サロン。",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "銀座 4-1-2",
+        "addressLocality": "Chuo Ward",
+        "addressRegion": "Tokyo",
+        "postalCode": "104-0061",
+        "addressCountry": "JP"
+      },
+      "telephone": "+81-3-1234-5678",
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Wednesday", "Thursday", "Friday"],
+          "opens": "11:00",
+          "closes": "21:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Saturday", "Sunday", "PublicHolidays"],
+          "opens": "10:00",
+          "closes": "20:00"
+        }
+      ],
+      "priceRange": "¥¥"
+    }
+    </script>
     <script>
       tailwind.config = {
         theme: {
@@ -21,19 +54,27 @@
             },
             colors: {
               base: '#F9F8F6',
-              main: '#D8C6C6', // Dusty Pink
-              accent: '#BFA588', // Copper Gold
-              text: '#4A4A4A', // Dark Brown/Charcoal
-              'text-light': '#525252', // Darkened for better readability
+              main: '#D8C6C6', 
+              accent: '#BFA588', 
+              text: '#4A4A4A', 
+              'text-light': '#525252', 
               sand: '#E6DDD3',
             },
             letterSpacing: {
-              'widest': '0.1em',
-              'relaxed': '0.05em',
+              'tightest': '-0.02em',
+              'airy': '0.02em', 
+              'relaxed': '0em', 
+              'widest': '0.2em', 
+              'extreme': '0.45em',
+            },
+            lineHeight: {
+              'airy': '1.8', 
+              'extra-loose': '2.6',
             },
             animation: {
-              'fade-in': 'fadeIn 1.5s ease-out forwards',
-              'fade-in-up': 'fadeInUp 1.2s ease-out forwards',
+              'fade-in': 'fadeIn 1.8s cubic-bezier(0.22, 1, 0.36, 1) forwards',
+              'fade-in-up': 'fadeInUp 1.5s cubic-bezier(0.22, 1, 0.36, 1) forwards',
+              'scroll-line': 'scrollLine 2.5s cubic-bezier(0.65, 0, 0.35, 1) infinite',
             },
             keyframes: {
               fadeIn: {
@@ -41,9 +82,16 @@
                 '100%': { opacity: '1' },
               },
               fadeInUp: {
-                '0%': { opacity: '0', transform: 'translateY(20px)' },
+                '0%': { opacity: '0', transform: 'translateY(30px)' },
                 '100%': { opacity: '1', transform: 'translateY(0)' },
               },
+              scrollLine: {
+                '0%': { transform: 'scaleY(0)', transformOrigin: 'top' },
+                '40%': { transform: 'scaleY(1)', transformOrigin: 'top' },
+                '40.1%': { transform: 'scaleY(1)', transformOrigin: 'bottom' },
+                '80%': { transform: 'scaleY(0)', transformOrigin: 'bottom' },
+                '100%': { transform: 'scaleY(0)', transformOrigin: 'bottom' },
+              }
             }
           }
         }
@@ -54,9 +102,19 @@
         font-family: 'Noto Sans JP', sans-serif;
         background-color: #F9F8F6;
         color: #4A4A4A;
-        letter-spacing: 0.05em;
+        letter-spacing: 0.0em; 
+        line-height: 1.75;
+        line-break: strict;
+        word-break: keep-all;
+        overflow-wrap: anywhere;
+        /* モバイルでの視認性向上のため、font-weightを少し調整 */
+        font-weight: 400; 
       }
-      /* Noise Texture Overlay */
+      @media (min-width: 768px) {
+        body {
+          font-weight: 300; /* PCでは繊細さを優先 */
+        }
+      }
       body::before {
         content: "";
         position: fixed;
@@ -70,27 +128,15 @@
       }
       h1, h2, h3, .font-heading {
         font-family: 'Shippori Mincho', serif;
+        letter-spacing: 0.12em; 
+        text-wrap: balance;
       }
-      .font-eng {
-        font-family: 'Cormorant Garamond', serif;
-      }
-      
-      /* Vertical Writing */
       .vertical-text {
         writing-mode: vertical-rl;
         text-orientation: upright;
       }
-
-      /* Custom Scrollbar */
-      ::-webkit-scrollbar {
-        width: 6px;
-      }
-      ::-webkit-scrollbar-track {
-        background: #F9F8F6; 
-      }
-      ::-webkit-scrollbar-thumb {
-        background: #D8C6C6; 
-        border-radius: 3px;
+      .phrase {
+        display: inline-block;
       }
     </style>
   <script type="importmap">
@@ -105,7 +151,7 @@
 }
 </script>
 </head>
-  <body class="bg-base text-text antialiased selection:bg-main selection:text-white">
+  <body class="bg-base text-text antialiased selection:bg-accent selection:text-white">
     <div id="root"></div>
     <script type="module" src="/index.tsx"></script>
   </body>

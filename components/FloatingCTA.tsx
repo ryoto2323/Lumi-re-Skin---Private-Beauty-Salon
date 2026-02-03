@@ -7,32 +7,48 @@ interface FloatingCTAProps {
 
 export const FloatingCTA: React.FC<FloatingCTAProps> = ({ onBook }) => {
   const [isVisible, setIsVisible] = useState(false);
+  const [lastScrollY, setLastScrollY] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
-      // Show button after scrolling past 500px (approx height of Hero)
-      setIsVisible(window.scrollY > 500);
+      const currentScrollY = window.scrollY;
+      
+      // Show if scrolling UP and past the initial hero section (300px)
+      // Hide if scrolling DOWN
+      if (currentScrollY > 300) {
+        if (currentScrollY < lastScrollY) {
+          setIsVisible(true);
+        } else {
+          setIsVisible(false);
+        }
+      } else {
+        setIsVisible(false);
+      }
+      
+      setLastScrollY(currentScrollY);
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [lastScrollY]);
 
   return (
     <div 
-      className={`fixed bottom-6 left-6 right-6 z-40 md:hidden transition-all duration-700 transform ${
-        isVisible ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0 pointer-events-none'
+      className={`fixed bottom-6 left-4 right-4 z-40 md:hidden transition-all duration-500 ease-out transform ${
+        isVisible ? 'translate-y-0 opacity-100' : 'translate-y-24 opacity-0 pointer-events-none'
       }`}
     >
-      <Button 
-        variant="secondary" 
-        fullWidth 
-        className="shadow-xl py-4 flex flex-col items-center justify-center gap-1 leading-none border border-white/20"
-        onClick={onBook}
-      >
-        <span className="text-sm tracking-widest font-medium">無料カウンセリングを予約する</span>
-        <span className="text-[10px] font-light opacity-90 tracking-wide">【今月残り5名様】初回トライアル 2,980円</span>
-      </Button>
+      <div className="bg-white/80 backdrop-blur-xl border border-white/40 shadow-[0_8px_30px_rgb(0,0,0,0.12)] rounded-lg p-1.5">
+        <Button 
+          variant="primary" 
+          fullWidth 
+          className="py-3 flex flex-col items-center justify-center gap-0.5 leading-none"
+          onClick={onBook}
+        >
+          <span className="text-[10px] tracking-[0.2em] font-medium uppercase font-eng opacity-90">Reservation</span>
+          <span className="text-sm tracking-widest font-medium">無料カウンセリング予約</span>
+        </Button>
+      </div>
     </div>
   );
 };

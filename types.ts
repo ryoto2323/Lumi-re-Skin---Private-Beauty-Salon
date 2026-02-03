@@ -33,5 +33,6 @@ export enum SectionId {
   VOICE = 'voice',
   FLOW = 'flow',
   FAQ = 'faq',
+  RESERVATION = 'reservation',
   ACCESS = 'access',
 }

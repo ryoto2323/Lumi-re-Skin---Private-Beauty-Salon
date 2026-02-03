@@ -1,3 +1,4 @@
+
 import { FaqItem, Review, SectionId, Staff } from './types';
 
 export { SectionId };
@@ -7,26 +8,11 @@ export const SALON_SUB = "Private Beauty Salon";
 
 export const NAV_LINKS = [
   { label: 'Concept', to: SectionId.CONCEPT },
-  { label: 'News', to: 'news' },
   { label: '3 Promises', to: SectionId.PROMISES },
+  { label: 'Hygiene', to: 'hygiene' },
   { label: 'Menu', to: SectionId.MENU },
-  { label: 'Gallery', to: 'gallery' },
   { label: 'Staff & Voice', to: SectionId.STAFF },
   { label: 'Access', to: SectionId.ACCESS },
-];
-
-export const CAMPAIGN_PLAN = {
-  name: "初回限定トライアル",
-  description: "全身美肌脱毛（顔・VIO含む）+ イオン導入",
-  limit: "WEB限定",
-  originalPrice: "19,800円",
-  campaignPrice: "980円"
-};
-
-export const NEWS_ITEMS = [
-  { date: "2023.10.15", title: "【11月限定】乾燥肌対策「高保湿イオン導入」無料グレードアップキャンペーン" },
-  { date: "2023.10.01", title: "ご予約システムのメンテナンスについて（10/20 2:00-4:00）" },
-  { date: "2023.09.20", title: "雑誌「Beauty Life」11月号に当サロンが掲載されました。" },
 ];
 
 export const GALLERY_IMAGES = [
@@ -39,50 +25,67 @@ export const GALLERY_IMAGES = [
 export const PROMISES = [
   {
     no: "01",
-    title_en: "Personal Support",
+    title_en: "Expertise Support",
     title_ja: "肌を知り尽くした専任担当制",
-    desc: "肌の状態は、季節やホルモンバランスによって繊細に変化します。当店では毎回違うスタッフが担当するのではなく、あなたの肌質・毛質を理解した専任スタッフが卒業までサポート。「今日の肌状態なら、出力をこう調整しましょう」——そんなプロの提案で、最短ルートの美肌へ導きます。"
+    desc: "認定脱毛士の資格を持つ経験豊富なスタッフが、カウンセリングから卒業までを専任で担当。毎回の肌の変化を見逃さず、その日のコンディションに合わせたオーダーメイドの出力を設定します。"
   },
   {
     no: "02",
-    title_en: "Stress Free System",
+    title_en: "Exclusive Booking",
     title_ja: "「予約が取れない」をゼロに。<br/>会員数限定システム",
-    desc: "「契約したのに予約が取れない」というストレスをなくすため、毎月の新規ご入会枠に制限を設けています。既存のお客様の予約枠を最優先に確保し、通いたいペースで確実に通える環境を整えています。21時まで営業しているため、お仕事帰りでも余裕を持って通えます。"
+    desc: "既存のお客様の快適さを最優先するため、新規ご入会枠に厳格な制限を設けております。「契約したのに予約が取れない」というストレスからあなたを解放し、理想の美肌へ最短距離で導きます。"
   },
   {
     no: "03",
-    title_en: "Beauty Charge",
+    title_en: "Luxury Care",
     title_ja: "毛をなくすだけじゃない。<br/>肌を育てる「イオン導入」",
-    desc: "当店の脱毛は、ただ毛を減らすだけではありません。照射と同時に、高濃度の美肌成分（ビタミンC誘導体・プラセンタ・ヒアルロン酸）を肌の奥深くまでイオン導入します。脱毛するたびに、黒ずみや乾燥がケアされ、吸いつくような透明感あふれる肌へ。"
+    desc: "照射と同時に高濃度美肌成分を肌の奥深くまで浸透させる最新技術。脱毛のたびに、シルクのような手触りと、内側から発光するような透明感をご実感いただけます。ReFa製ドライヤー完備の上質な空間もお愉しみください。"
   }
 ];
 
 export const MENU_ITEMS = {
   pickup: {
-    name: "初回限定トライアル",
-    content: "全身美肌脱毛（顔・VIO含む）+ イオン導入",
+    name: "【初回限定】美肌オーダーメイド体験",
+    content: "全身美肌脱毛（顔・VIO含む）+ 高濃度イオン導入トリートメント",
     price_original: "19,800円",
     price_discount: "2,980円"
   },
   normal: [
-    { name: "全身美肌脱毛（顔・VIO込）", price: "1回都度払い 19,800円 / 5回コース 89,000円" },
-    { name: "VIO集中ケア", price: "1回都度払い 6,600円" },
-    { name: "お顔全体脱毛", price: "1回都度払い 5,500円" }
+    { name: "全身美肌脱毛（顔・VIO込）", price: "1回 19,800円 / 5回 89,000円" },
+    { name: "VIO集中デザインケア", price: "1回 6,600円" },
+    { name: "お顔全体・美白パック付", price: "1回 5,500円" }
   ]
 };
+
+// Fix: Added missing CAMPAIGN_PLAN constant for Offer.tsx
+export const CAMPAIGN_PLAN = {
+  name: "全身美肌脱毛トライアル",
+  description: "顔・VIOを含む全身360°。最新SHR方式で痛みゼロの美肌体験を。",
+  originalPrice: "19,800円",
+  campaignPrice: "2,980円",
+  limit: "毎月限定5名様"
+};
+
+// Fix: Added missing NEWS_ITEMS constant for News.tsx
+export const NEWS_ITEMS = [
+  { date: "2024.12.01", title: "年末年始の営業に関するお知らせ" },
+  { date: "2024.11.15", title: "【新メニュー】高濃度ビタミンC導入オプションを開始いたしました" },
+  { date: "2024.10.20", title: "表参道店オープン決定（2025年春予定）に伴うスタッフ募集のお知らせ" },
+];
 
 export const STAFF_LIST: Staff[] = [
   {
     id: 1,
-    name: "店長 Haruka",
-    role: "エステティシャン歴10年",
-    message: "「私自身、剛毛と敏感肌がコンプレックスでした。だからこそ、お客様の『キレイになりたいけど怖い』という気持ちに誰よりも寄り添えます。どんな小さなお悩みでもご相談ください。」",
+    name: "Haruka",
+    role: "JESA認定脱毛士 / 歴10年",
+    message: "「私自身、敏感肌に悩んできた経験から、肌への優しさと確かな効果の両立を追求しています。単なる脱毛ではなく、お客様が自分を好きになれる肌作りをお手伝いいたします。」",
     image: "https://github.com/ryoto2323/Lumi-re-Skin---Private-Beauty-Salon/blob/main/g.png?raw=true"
   },
   {
     id: 2,
-    name: "チーフ Misaki",
-    message: "「脱毛は肌をキレイにするだけでなく、心も明るくしてくれます。お客様が鏡を見て笑顔になる瞬間が一番の幸せです。リラックスできる空間作りを心がけています。」",
+    name: "Misaki",
+    role: "美容電気脱毛技能士 / 歴8年",
+    message: "「プライベートサロンならではの静謐な時間と、細やかな配慮を大切にしています。お一人おひとりの毛質・肌質を科学的に分析し、納得感のあるカウンセリングを心がけています。」",
     image: "https://github.com/ryoto2323/Lumi-re-Skin---Private-Beauty-Salon/blob/main/h.png?raw=true"
   }
 ];
@@ -90,36 +93,31 @@ export const STAFF_LIST: Staff[] = [
 export const REVIEWS: Review[] = [
   {
     id: 1,
-    age: "20代後半・会社員",
-    comment: "医療脱毛は痛すぎて3回で断念しましたが、Lumière Skinさんは本当に温かい程度で驚きました！担当のHarukaさんがいつも丁寧に当ててくれるので安心です。肌もトーンアップして、友達に褒められました。"
+    age: "30代後半・クリエイティブ職",
+    comment: "騒がしい大型サロンと違い、ここは本当のリラクゼーション空間。ReFaのアイロンや高級な化粧品が揃っているパウダールームも楽しみの一つです。専任の方が丁寧に進めてくれるので、安心感が違います。"
   },
   {
     id: 2,
-    age: "30代前半・主婦",
-    comment: "子供がいるので予約変更などが不安でしたが、LINEで柔軟に対応してくれるのが助かります。他店では「流れ作業」を感じていましたが、ここは毎回肌の状態を見て出力を調整してくれるので、効果の実感が早いです。"
+    age: "40代前半・経営者",
+    comment: "予約の取りやすさが決め手でした。毎回決まった時間に確実に取れるので、忙しいスケジュールでも無理なく通えています。SHR方式は全く痛みがなく、温かいマッサージのようでいつも寝てしまいます。"
   }
 ];
 
 export const FLOW_STEPS = [
-  { title: "ご来店", desc: "アロマ香る受付で笑顔でお迎えします。" },
-  { title: "カウンセリング", desc: "ハーブティーを飲みながら、肌状態やご希望をお伺いします。" },
-  { title: "お着替え", desc: "完全個室のプライベート空間でガウンにお着替え。" },
-  { title: "施術", desc: "ジェルを塗布し、丁寧に照射。会話を楽しみながらリラックス。" },
-  { title: "アフターケア", desc: "イオン導入でお肌を鎮静＆保湿。" },
-  { title: "メイク直し", desc: "ドレッサー完備。ReFaのドライヤーや高級アメニティをご自由にお使いください。" }
+  { title: "迎賓", desc: "お一人様ずつの完全予約制。誰にも会わずにリラックスした時間をお過ごしいただけます。" },
+  { title: "美肌診断", desc: "認定脱毛士による詳細なカウンセリング。毛周期や肌質を数値で分析します。" },
+  { title: "優雅な施術", desc: "SHR方式による無痛脱毛。高級リネンを使用したベッドで安らぎを。" },
+  { title: "トリートメント", desc: "高濃度ビタミンCとプラセンタのイオン導入。脱毛と同時に美肌を育てます。" },
+  { title: "ティータイム", desc: "施術後は厳選されたハーブティーをご用意。ドレッサーでの身支度もごゆっくり。" }
 ];
 
 export const FAQS: FaqItem[] = [
   {
-    question: "本当に勧誘はありませんか？",
-    answer: "はい、ございません。お客様のご希望に合ったプランをご提案いたしますが、ご自宅でゆっくり検討いただけるよう、当日の契約強要は一切いたしません。"
+    question: "勧誘がないか不安なのですが…",
+    answer: "Lumière Skinでは強引な勧誘を一切禁止しております。お客様の人生を彩るパートナーでありたいという想いから、ご本人が納得されないままの契約は承っておりません。"
   },
   {
-    question: "生理中でも施術できますか？",
-    answer: "VIO・ヒップ以外は施術可能です。また、体調が優れない場合は無理せず日程変更をご相談ください。"
-  },
-  {
-    question: "未成年でも通えますか？",
-    answer: "はい、可能です。親権者様の同意書が必要となりますので、初回カウンセリング時にご持参いただくか、同伴をお願いしております。キッズ脱毛（7歳〜）にも対応しております。"
+    question: "どれくらいで効果を感じられますか？",
+    answer: "最新のSHR方式により、3回目あたりから毛が細くなるのを実感される方が多いです。通常、10〜12回ほどで自己処理がほぼ不要な『光り輝く肌』へと導かれます。"
   }
 ];
