@@ -11,7 +11,7 @@ export const Machine: React.FC = () => {
           <div className="w-full md:w-1/2 h-[400px] md:h-[500px] relative overflow-hidden rounded-t-full md:rounded-t-none md:rounded-l-full border border-base group">
              <ScrollReveal className="h-full w-full">
                 <img 
-                  src="https://placehold.co/800x1000/F0EFED/AFAFAF?text=Soft+Machine+Image" 
+                  src="https://github.com/ryoto2323/Lumi-re-Skin---Private-Beauty-Salon/blob/main/b.png?raw=true" 
                   alt="Treatment Room" 
                   className="w-full h-full object-cover opacity-90 transition-transform duration-[2s] group-hover:scale-105" 
                 />

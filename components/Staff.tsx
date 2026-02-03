@@ -25,7 +25,7 @@ export const Staff: React.FC = () => {
               <div className="flex flex-col items-center text-center">
                 <div className="w-48 h-48 mb-8 relative">
                    <img 
-                    src={`https://placehold.co/400x400/EAEAEA/BCBCBC?text=${staff.name.split(' ')[1]}`} 
+                    src={staff.image || `https://placehold.co/400x400/EAEAEA/BCBCBC?text=${staff.name.split(' ')[1]}`} 
                     alt={staff.name} 
                     className="w-full h-full object-cover rounded-full md:rounded-[40px] grayscale hover:grayscale-0 transition-all duration-700"
                   />

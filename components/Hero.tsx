@@ -12,7 +12,7 @@ export const Hero: React.FC<HeroProps> = ({ onBook }) => {
       {/* Background Image with Ken Burns Effect */}
       <div className="absolute inset-0 z-0 overflow-hidden">
         <img 
-          src="https://placehold.co/1920x1080/e5e5e5/d1d1d1?text=Relaxed+Woman+Window+Light" 
+          src="https://github.com/ryoto2323/Lumi-re-Skin---Private-Beauty-Salon/blob/main/a.png?raw=true" 
           alt="Sunlight on skin" 
           className="w-full h-full object-cover opacity-90 animate-[ken-burns_20s_ease-out_infinite_alternate]"
           style={{ transformOrigin: 'center center' }}

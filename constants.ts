@@ -30,10 +30,10 @@ export const NEWS_ITEMS = [
 ];
 
 export const GALLERY_IMAGES = [
-  { src: "https://placehold.co/600x400/F0EFED/AFAFAF?text=Reception", alt: "Reception" },
-  { src: "https://placehold.co/600x400/EAEAEA/BCBCBC?text=Treatment+Room", alt: "Treatment Room" },
-  { src: "https://placehold.co/600x400/F5F5F5/D3D3D3?text=Powder+Room", alt: "Powder Room" },
-  { src: "https://placehold.co/600x400/EBEBEB/C0C0C0?text=Amenities", alt: "Amenities" },
+  { src: "https://github.com/ryoto2323/Lumi-re-Skin---Private-Beauty-Salon/blob/main/c.png?raw=true", alt: "Reception" },
+  { src: "https://github.com/ryoto2323/Lumi-re-Skin---Private-Beauty-Salon/blob/main/d.png?raw=true", alt: "Treatment Room" },
+  { src: "https://github.com/ryoto2323/Lumi-re-Skin---Private-Beauty-Salon/blob/main/e.png?raw=true", alt: "Powder Room" },
+  { src: "https://github.com/ryoto2323/Lumi-re-Skin---Private-Beauty-Salon/blob/main/f.png?raw=true", alt: "Amenities" },
 ];
 
 export const PROMISES = [
@@ -76,12 +76,14 @@ export const STAFF_LIST: Staff[] = [
     id: 1,
     name: "店長 Haruka",
     role: "エステティシャン歴10年",
-    message: "「私自身、剛毛と敏感肌がコンプレックスでした。だからこそ、お客様の『キレイになりたいけど怖い』という気持ちに誰よりも寄り添えます。どんな小さなお悩みでもご相談ください。」"
+    message: "「私自身、剛毛と敏感肌がコンプレックスでした。だからこそ、お客様の『キレイになりたいけど怖い』という気持ちに誰よりも寄り添えます。どんな小さなお悩みでもご相談ください。」",
+    image: "https://github.com/ryoto2323/Lumi-re-Skin---Private-Beauty-Salon/blob/main/g.png?raw=true"
   },
   {
     id: 2,
     name: "チーフ Misaki",
-    message: "「脱毛は肌をキレイにするだけでなく、心も明るくしてくれます。お客様が鏡を見て笑顔になる瞬間が一番の幸せです。リラックスできる空間作りを心がけています。」"
+    message: "「脱毛は肌をキレイにするだけでなく、心も明るくしてくれます。お客様が鏡を見て笑顔になる瞬間が一番の幸せです。リラックスできる空間作りを心がけています。」",
+    image: "https://github.com/ryoto2323/Lumi-re-Skin---Private-Beauty-Salon/blob/main/h.png?raw=true"
   }
 ];
 
