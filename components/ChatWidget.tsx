@@ -77,10 +77,10 @@ export const ChatWidget: React.FC = () => {
         return;
       }
 
-      // 2. モデルの初期化 (gemini-1.5-flash を指定)
+      // 2. モデルの初期化 (gemini-1.5-flash-latest を指定)
       const genAI = new GoogleGenerativeAI(apiKey);
       const model = genAI.getGenerativeModel({ 
-        model: "gemini-1.5-flash",
+        model: "gemini-1.5-flash-latest",
         systemInstruction: `
           あなたは高級脱毛サロン「Lumière Skin（ルミエール・スキン）」の専任コンシェルジュです。
           以下のブランド情報を元に、お客様の質問に**「上品で、落ち着きがあり、安心感を与える丁寧な敬語」**で答えてください。
