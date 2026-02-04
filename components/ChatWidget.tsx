@@ -28,40 +28,23 @@ export const ChatWidget: React.FC = () => {
     setIsLoading(true);
 
     try {
-      // 1. APIキーの取得 (Vite環境用)
+      // ★ここに新しいAPIキーを貼り付けてください
       const API_KEY = "AIzaSyCQ5PNXK-3XIETHtV3U-B_zJMEHKoHgd8U";
-      
-      if (!API_KEY) {
-        console.error("API Key not found. Check Cloudflare environment variables.");
-        throw new Error("API Key is missing");
-      }
 
-      // 2. Geminiの初期化 (安定版 gemini-pro を指定)
+      console.log("Using Key:", API_KEY?.slice(0, 5) + "..."); // ログ確認用
+
+      if (!API_KEY) throw new Error("API Key is empty");
+
+      // モデルを flash に変更（latestなし）
       const genAI = new GoogleGenerativeAI(API_KEY);
-      const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+      const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
       const prompt = `
-        あなたは高級脱毛サロン「Lumière Skin（ルミエール・スキン）」の専任コンシェルジュです。
-        以下のブランド情報を元に、お客様の質問に上品で、落ち着きがあり、安心感を与える丁寧な敬語で答えてください。
-
-        【サロンコンセプト】
-        - ブランド: Lumière Skin (ルミエール・スキン)
-        - テーマ: Nuance & Transparency (光と透明感)
-        - ターゲット: 質を重視する大人の女性
-
-        【メニュー・価格】
-        - 初回限定トライアル: 全身美肌脱毛 (顔・VIO含む) + イオン導入 → 2,980円 (税込)
-        - 全身脱毛 (通常): 1回 19,800円 / 5回 89,000円
-        - VIO単発: 6,600円
-        - 入会金・事務手数料: 無料
-
-        【特徴・強み】
-        - 痛くないSHR脱毛（温かいマッサージのような感覚）
-        - 予約が取りやすい（会員数制限システム）
-        - 完全個室・専任担当制
-        - 無理な勧誘は一切なし
-
-        お客様の質問: ${userMessage}
+        あなたは脱毛サロン「Lumière Skin」のスタッフです。
+        以下の情報のみを元に、短く丁寧に答えてください。
+        料金: 全身1回19,800円、5回89,000円
+        特徴: 痛くないSHR脱毛、銀座店
+        質問: ${userMessage}
       `;
 
       const result = await model.generateContent(prompt);
@@ -69,9 +52,15 @@ export const ChatWidget: React.FC = () => {
       const text = response.text();
 
       setMessages(prev => [...prev, { role: 'model', text: text }]);
-    } catch (error) {
-      console.error("Chat Error:", error);
-      setMessages(prev => [...prev, { role: 'model', text: '申し訳ございません。現在アクセスが集中しているか、通信エラーが発生しました。時間をおいて再度お試しください。' }]);
+
+    } catch (error: any) {
+      console.error("Gemini Error:", error);
+      
+      // ★ここでエラーの「正体」を画面に出します
+      let errorMessage = "エラーが発生しました。";
+      if (error.message) errorMessage += "\n詳細: " + error.message;
+      
+      setMessages(prev => [...prev, { role: 'model', text: errorMessage }]);
     } finally {
       setIsLoading(false);
     }
@@ -80,7 +69,7 @@ export const ChatWidget: React.FC = () => {
   return (
     <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end">
       {isOpen && (
-        <div className="mb-4 w-[350px] h-[500px] bg-white/95 backdrop-blur-sm rounded-2xl shadow-2xl flex flex-col overflow-hidden border border-stone-200 font-sans animate-fade-in-up">
+        <div className="mb-4 w-[350px] h-[500px] bg-white/95 backdrop-blur-sm rounded-2xl shadow-2xl flex flex-col overflow-hidden border border-stone-200 font-sans">
           <div className="bg-[#BFA588] p-4 flex justify-between items-center text-white">
             <div className="flex items-center gap-2">
               <Sparkles size={18} />
@@ -99,7 +88,8 @@ export const ChatWidget: React.FC = () => {
                     ? 'bg-[#4A4A4A] text-white rounded-tr-sm' 
                     : 'bg-white text-[#5D5D5D] rounded-tl-sm border border-stone-100'
                 }`}>
-                  {msg.text}
+                  {/* 改行を反映させる */}
+                  <div style={{ whiteSpace: 'pre-wrap' }}>{msg.text}</div>
                 </div>
               </div>
             ))}
@@ -120,7 +110,7 @@ export const ChatWidget: React.FC = () => {
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyPress={(e) => e.key === 'Enter' && handleSend()}
-                placeholder="ご質問を入力してください..."
+                placeholder="質問を入力..."
                 className="flex-1 bg-stone-50 border-none rounded-full px-4 py-2 text-sm focus:ring-1 focus:ring-[#BFA588] outline-none text-[#4A4A4A]"
               />
               <button 
@@ -138,7 +128,6 @@ export const ChatWidget: React.FC = () => {
       <button
         onClick={() => setIsOpen(!isOpen)}
         className="bg-[#BFA588] hover:bg-[#A88F75] text-white p-4 rounded-full shadow-lg transition-all duration-300 hover:scale-105 group"
-        aria-label="チャットを開く"
       >
         {isOpen ? <X size={28} /> : <MessageCircle size={28} />}
       </button>
