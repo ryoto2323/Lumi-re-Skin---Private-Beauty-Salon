@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import { MessageCircle, X, Send, Loader2, Sparkles } from 'lucide-react';
 
-const ChatWidget: React.FC = () => {
+export const ChatWidget: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<{ role: 'user' | 'model'; text: string }[]>([
     { role: 'model', text: 'こんにちは。Lumière Skinの専任コンシェルジュです。料金や痛みの不安など、何でもご相談ください。' }
@@ -145,5 +145,3 @@ const ChatWidget: React.FC = () => {
     </div>
   );
 };
-
-export default ChatWidget;
