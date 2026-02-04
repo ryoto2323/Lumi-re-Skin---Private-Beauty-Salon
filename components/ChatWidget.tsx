@@ -66,7 +66,9 @@ export const ChatWidget: React.FC = () => {
 
     try {
       // 1. APIキーのチェック（Vite形式）
-      const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
+      const apiKey = "AIzaSyCQ0S4rhPMpVr6YW5a-Hb6x6dxJ0aGEkWQ";
+      
+
       
       if (!apiKey) {
         console.error("API Key is missing. Check Cloudflare settings.");
