@@ -1,14 +1,20 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { GoogleGenerativeAI } from "@google/generative-ai";
-import { MessageCircle, X, Send, Loader2, Sparkles } from 'lucide-react';
+import React, { useState, useRef, useEffect } from 'react';
+import { MessageCircle, X, Send, Sparkles, Loader2, AlertCircle } from 'lucide-react';
+import { GoogleGenAI } from "@google/genai";
+import { Message, SectionId } from '../types';
 
-// ★ここにAPIキーを貼り付けてください
-const API_KEY = ""; 
+const SUGGESTIONS = [
+  "料金プランについて",
+  "痛みはありますか？",
+  "予約方法を教えて",
+  "店舗の場所は？"
+];
 
 export const ChatWidget: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [messages, setMessages] = useState<{ role: 'user' | 'model'; text: string }[]>([
-    { role: 'model', text: 'こんにちは。Lumière Skinの専任コンシェルジュです。料金や痛みの不安など、何でもご相談ください。' }
+  const [hasOpened, setHasOpened] = useState(false);
+  const [messages, setMessages] = useState<Message[]>([
+    { role: 'model', text: 'こんにちは。Lumière Skinのコンシェルジュでございます。お肌のお悩みやプランについて、どのようなことでもご相談くださいませ。' }
   ]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -22,95 +28,187 @@ export const ChatWidget: React.FC = () => {
     scrollToBottom();
   }, [messages, isOpen]);
 
-  const handleSend = async () => {
-    if (!input.trim() || isLoading) return;
+  useEffect(() => {
+    if (isOpen && !hasOpened) {
+      setHasOpened(true);
+      
+      const scrollY = window.scrollY;
+      const height = window.innerHeight;
+      
+      const machineSection = document.getElementById(SectionId.MACHINE)?.offsetTop || 0;
+      const menuSection = document.getElementById(SectionId.MENU)?.offsetTop || 0;
+      const accessSection = document.getElementById(SectionId.ACCESS)?.offsetTop || 0;
 
-    const userMessage = input;
+      let contextMessage = '';
+
+      if (scrollY >= menuSection - height / 2 && scrollY < accessSection) {
+        contextMessage = '料金プランやコースについて、ご不明な点はございませんか？お客様に最適なプランをご提案させていただきます。';
+      } else if (scrollY >= machineSection - height / 2 && scrollY < menuSection) {
+        contextMessage = '当サロンの脱毛機や施術の痛みについて、気になることはございますか？';
+      } else if (scrollY >= accessSection - height / 2) {
+        contextMessage = '店舗の場所やアクセス方法について、ご案内いたしましょうか？';
+      }
+
+      if (contextMessage) {
+        setMessages([{ role: 'model', text: `こんにちは。${contextMessage}` }]);
+      }
+    }
+  }, [isOpen, hasOpened]);
+
+  const handleSend = async (text: string = input) => {
+    if (!text.trim() || isLoading) return;
+
+    // Check if API Key exists
+    const apiKey = process.env.API_KEY;
+    if (!apiKey) {
+      console.error("Gemini API Key is missing. Please set API_KEY in your deployment environment variables.");
+      setMessages(prev => [...prev, 
+        { role: 'user', text: text },
+        { role: 'model', text: '申し訳ございません。現在システムメンテナンス中のため、チャットをご利用いただけません。お急ぎの場合はお電話にてお問い合わせください。' }
+      ]);
+      setInput('');
+      return;
+    }
+
+    const userMessage = text;
     setInput('');
     setMessages(prev => [...prev, { role: 'user', text: userMessage }]);
     setIsLoading(true);
 
     try {
-      if (!API_KEY) {
-        throw new Error("API Key is missing");
-      }
-
-      const genAI = new GoogleGenerativeAI(API_KEY);
-      const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
-
+      const ai = new GoogleGenAI({ apiKey: apiKey });
+      const systemInstruction = `
+        あなたは高級脱毛サロン「Lumière Skin（ルミエール・スキン）」の専任コンシェルジュです。
+        以下のブランド情報を元に、お客様の質問に「上品で、落ち着きがあり、安心感を与える丁寧な敬語」で答えてください。
+        
+        【サロンコンセプト】
+        - ブランド: Lumière Skin (ルミエール・スキン)
+        - テーマ: Nuance & Transparency（光と透明感）
+        - ターゲット: 質を重視する大人の女性
+        
+        【メニュー・価格】
+        - 初回限定トライアル: 全身美肌脱毛（顔・VIO含む）+ イオン導入 → 2,980円（税込）
+        - 全身脱毛（通常）: 1回 19,800円 / 5回 89,000円
+        - VIO単発: 6,600円
+        
+        【強み】
+        - 痛くないSHR方式
+        - イオン導入で美肌効果
+        - 完全個室・予約が取れる
+        
+        【回答のルール】
+        - エレガントな言葉遣いを徹底。
+        - 予約を促す際は「よろしければ、無料カウンセリングにて詳しくお肌の状態を拝見できればと存じます」と案内。
+        - 回答は短く、スマートフォンで読みやすい長さに。
+      `;
+      
       const prompt = `
-        あなたは高級脱毛サロン「Lumière Skin」のスタッフです。
-        以下の情報のみを元に、短く丁寧に答えてください。
-        料金: 全身1回19,800円、5回89,000円
-        特徴: 痛くないSHR脱毛、銀座店
-        質問: ${userMessage}
+        ユーザーの質問: ${userMessage}
+        これまでの会話履歴:
+        ${messages.slice(-4).map(m => `${m.role === 'user' ? 'User' : 'Assistant'}: ${m.text}`).join('\n')}
       `;
 
-      const result = await model.generateContent(prompt);
-      const response = await result.response;
-      const text = response.text();
+      const response = await ai.models.generateContent({
+        model: 'gemini-3-flash-preview',
+        contents: prompt,
+        config: {
+          systemInstruction: systemInstruction,
+        }
+      });
 
-      setMessages(prev => [...prev, { role: 'model', text: text }]);
-    } catch (error) {
-      console.error("Chat Error:", error);
-      setMessages(prev => [...prev, { role: 'model', text: '申し訳ございません。通信エラーが発生しました。' }]);
+      const responseText = response.text || "申し訳ございません。うまく回答できませんでした。";
+      setMessages(prev => [...prev, { role: 'model', text: responseText }]);
+
+    } catch (error: any) {
+      console.error("AI Error Details:", error);
+      let errorMessage = '申し訳ございません。一時的なエラーが発生いたしました。';
+      
+      if (error.message?.includes('API_KEY_INVALID')) {
+        errorMessage = 'APIキーが無効です。設定を確認してください。';
+      }
+
+      setMessages(prev => [...prev, { role: 'model', text: errorMessage }]);
     } finally {
       setIsLoading(false);
     }
   };
 
+  const handleKeyPress = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      handleSend();
+    }
+  };
+
   return (
-    <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end">
+    <div className="fixed bottom-24 right-4 md:bottom-8 md:right-8 z-50 flex flex-col items-end font-sans">
       {isOpen && (
-        <div className="mb-4 w-[350px] h-[500px] bg-white/95 backdrop-blur-sm rounded-2xl shadow-2xl flex flex-col overflow-hidden border border-stone-200 font-sans">
-          <div className="bg-[#BFA588] p-4 flex justify-between items-center text-white">
-            <div className="flex items-center gap-2">
-              <Sparkles size={18} />
-              <span className="font-medium tracking-wide text-sm">Lumière Concierge</span>
+        <div className="mb-4 w-[320px] md:w-[360px] flex flex-col overflow-hidden bg-white shadow-2xl rounded-2xl ring-1 ring-black/5 transition-all animate-in slide-in-from-bottom-10 fade-in duration-300">
+          <div className="flex items-center justify-between bg-[#4A4A4A] px-5 py-4 text-white">
+            <div className="flex items-center gap-3">
+              <Sparkles size={16} className="text-accent" />
+              <span className="font-eng tracking-widest text-sm">Lumière Concierge</span>
             </div>
-            <button onClick={() => setIsOpen(false)} className="hover:bg-white/20 p-1 rounded-full transition-colors">
-              <X size={20} />
+            <button onClick={() => setIsOpen(false)} className="rounded-full p-1 hover:bg-white/10 text-white/70 hover:text-white transition-colors">
+              <X size={18} strokeWidth={1} />
             </button>
           </div>
 
-          <div className="flex-1 overflow-y-auto p-4 bg-stone-50 space-y-4">
-            {messages.map((msg, index) => (
-              <div key={index} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
-                <div className={`max-w-[85%] p-3 rounded-2xl text-sm leading-relaxed shadow-sm ${
-                  msg.role === 'user' 
-                    ? 'bg-[#4A4A4A] text-white rounded-tr-sm' 
-                    : 'bg-white text-[#5D5D5D] rounded-tl-sm border border-stone-100'
-                }`}>
+          <div className="h-80 overflow-y-auto bg-canvas p-5">
+            {messages.map((msg, idx) => (
+              <div key={idx} className={`mb-6 flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
+                <div 
+                  className={`max-w-[85%] px-5 py-4 text-sm leading-loose shadow-sm ${
+                    msg.role === 'user' 
+                      ? 'bg-text text-white rounded-t-lg rounded-bl-lg' 
+                      : 'bg-white text-text rounded-t-lg rounded-br-lg border border-gray-100'
+                  }`}
+                >
                   {msg.text}
                 </div>
               </div>
             ))}
             {isLoading && (
-              <div className="flex justify-start">
-                <div className="bg-white p-3 rounded-2xl rounded-tl-sm border border-stone-100 shadow-sm">
-                  <Loader2 className="animate-spin text-[#BFA588]" size={20} />
+              <div className="flex justify-start mb-4">
+                <div className="bg-white rounded-t-lg rounded-br-lg border border-gray-100 px-5 py-4 shadow-sm">
+                  <Loader2 className="animate-spin text-accent" size={18} />
                 </div>
               </div>
             )}
             <div ref={messagesEndRef} />
           </div>
 
-          <div className="p-4 bg-white border-t border-stone-100">
-            <div className="flex gap-2">
+          <div className="bg-white px-4 pt-2 pb-0 overflow-x-auto whitespace-nowrap scrollbar-hide">
+            <div className="flex gap-2 pb-2">
+              {SUGGESTIONS.map((suggestion, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => handleSend(suggestion)}
+                  disabled={isLoading}
+                  className="inline-block px-3 py-1.5 bg-canvas border border-accent/20 rounded-full text-xs text-text hover:bg-accent hover:text-white transition-colors disabled:opacity-50"
+                >
+                  {suggestion}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div className="border-t border-gray-100 bg-white p-4">
+            <div className="flex items-center gap-2 border-b border-gray-200 px-2 py-2 focus-within:border-accent transition-colors">
               <input
-                type="text"
+                className="flex-1 bg-transparent text-sm focus:outline-none placeholder:text-gray-300 text-text"
+                placeholder="メッセージを入力..."
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
-                onKeyPress={(e) => e.key === 'Enter' && handleSend()}
-                placeholder="質問を入力..."
-                className="flex-1 bg-stone-50 border-none rounded-full px-4 py-2 text-sm focus:ring-1 focus:ring-[#BFA588] outline-none text-[#4A4A4A]"
+                onKeyDown={handleKeyPress}
+                disabled={isLoading}
               />
               <button 
-                onClick={handleSend}
-                disabled={isLoading || !input.trim()}
-                className="bg-[#BFA588] text-white p-2 rounded-full hover:bg-[#A88F75] disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                onClick={() => handleSend()}
+                disabled={!input.trim() || isLoading}
+                className="p-2 text-accent hover:text-text transition-colors disabled:text-gray-200"
               >
-                <Send size={18} />
+                <Send size={18} strokeWidth={1} />
               </button>
             </div>
           </div>
@@ -119,9 +217,11 @@ export const ChatWidget: React.FC = () => {
 
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="bg-[#BFA588] hover:bg-[#A88F75] text-white p-4 rounded-full shadow-lg transition-all duration-300 hover:scale-105 group"
+        className={`flex h-14 w-14 items-center justify-center rounded-full shadow-lg transition-all hover:scale-105 active:scale-95 ${
+          isOpen ? 'bg-text text-white' : 'bg-accent text-white hover:bg-[#A88F75]'
+        }`}
       >
-        {isOpen ? <X size={28} /> : <MessageCircle size={28} />}
+        {isOpen ? <X size={24} strokeWidth={1} /> : <MessageCircle size={24} strokeWidth={1} />}
       </button>
     </div>
   );

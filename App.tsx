@@ -23,18 +23,8 @@ const App: React.FC = () => {
   const [isOpeningDone, setIsOpeningDone] = useState(false);
 
   const handleBook = () => {
-    const element = document.getElementById(SectionId.RESERVATION);
-    if (element) {
-      // Offset for header
-      const headerOffset = 80;
-      const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: "smooth"
-      });
-    }
+    // Directly navigate to the specified reservation URL
+    window.location.href = 'https://airrsv.net/demosite0000/calendar';
   };
 
   return (

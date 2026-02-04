@@ -19,75 +19,81 @@ export const Menu: React.FC<MenuProps> = ({ onBook }) => {
             <h2 className="text-3xl md:text-5xl font-mincho font-light text-text tracking-widest mb-10 leading-loose">
               あなたに最適なプランを
             </h2>
-            <p className="font-sans font-light text-sm md:text-base text-text-light leading-loose tracking-airy max-w-2xl mx-auto">
+            <p className="font-sans font-light text-sm md:text-base text-text-light leading-loose tracking-airy max-w-2xl mx-auto opacity-80">
               必要な回数を、明確な価格で。<br className="hidden md:block"/>
               入会金・追加料金はいっさいございません。
             </p>
           </div>
         </ScrollReveal>
 
-        <div className="grid lg:grid-cols-2 gap-16 items-center max-w-6xl mx-auto">
-          {/* Left Column: Visual Recommended Plan */}
+        <div className="grid lg:grid-cols-2 gap-20 items-center max-w-6xl mx-auto">
+          {/* Left Column: Visual Recommended Plan with Material Sharing */}
           <ScrollReveal delay={0.2} className="relative group">
-             {/* Glow effect */}
-             <div className="absolute -inset-8 bg-[#D8C6C6]/20 blur-3xl rounded-full opacity-50 group-hover:opacity-80 transition-opacity duration-1000"></div>
+             {/* Dynamic Glow effect */}
+             <div className="absolute -inset-16 bg-main/5 blur-[120px] rounded-full opacity-40 group-hover:opacity-80 transition-opacity duration-[2s]"></div>
              
-             {/* Card - Glassmorphism & Floating */}
-             <div className="relative bg-white/60 backdrop-blur-md shadow-2xl shadow-[#D8C6C6]/20 border border-white/40 rounded-sm overflow-hidden transform hover:-translate-y-2 transition-transform duration-700">
-                <div className="h-72 overflow-hidden relative">
+             {/* Card - Integrated Material Design */}
+             <div className="relative bg-white/50 backdrop-blur-2xl shadow-2xl shadow-main/5 border border-white/80 rounded-sm overflow-hidden transform hover:-translate-y-2 transition-all duration-1000">
+                <div className="h-96 overflow-hidden relative">
                    <img 
                     src="https://github.com/ryoto2323/Lumi-re-Skin---Private-Beauty-Salon/blob/main/i.png?raw=true" 
                     alt="Treatment" 
-                    className="w-full h-full object-cover transition-transform duration-[2s] group-hover:scale-105 opacity-90 grayscale-[0.1]" 
+                    className="w-full h-full object-cover transition-transform duration-[4s] group-hover:scale-105 opacity-90 grayscale-[0.05]" 
                    />
-                   <div className="absolute inset-0 bg-gradient-to-t from-white/90 to-transparent"></div>
-                   <div className="absolute top-6 left-6 bg-white/90 backdrop-blur px-6 py-2 text-[10px] tracking-widest font-eng uppercase text-accent border border-[#BFA588]/20 shadow-sm">
-                      Recommended
+                   {/* Material Sharing Overlay: Bleed bottom to card body color */}
+                   <div className="absolute inset-0 bg-gradient-to-t from-white/90 via-transparent to-transparent opacity-80"></div>
+                   
+                   <div className="absolute top-10 left-10 bg-white/90 backdrop-blur-md px-8 py-3 text-[10px] tracking-[0.4em] font-eng uppercase text-accent border border-accent/10 shadow-lg">
+                      Recommended Plan
                    </div>
                 </div>
-                <div className="p-12 text-center relative -mt-20">
-                   <h3 className="font-mincho text-2xl md:text-3xl text-text mb-8 tracking-widest relative z-10">{MENU_ITEMS.pickup.name}</h3>
-                   <div className="w-8 h-[1px] bg-[#BFA588] mx-auto mb-10"></div>
-                   <p className="text-sm font-light text-text-light leading-loose mb-10">
+                
+                <div className="p-12 md:p-16 text-center relative -mt-20 bg-white/90 backdrop-blur-md border-t border-white/50">
+                   <div className="inline-block font-eng text-[11px] tracking-widest text-main mb-6 uppercase font-medium">Limited Trial Offer</div>
+                   <h3 className="font-mincho text-2xl md:text-3xl text-text mb-10 tracking-[0.2em]">{MENU_ITEMS.pickup.name}</h3>
+                   <div className="w-16 h-[0.5px] bg-accent/30 mx-auto mb-12"></div>
+                   <p className="text-sm font-light text-text-light leading-extra-loose mb-14 max-w-xs mx-auto text-balance">
                      {MENU_ITEMS.pickup.content}
                    </p>
-                   <div className="mb-12 py-6 rounded-sm border-t border-b border-[#E6DDD3]">
-                      <span className="text-xs text-text-light line-through mr-4">通常 {MENU_ITEMS.pickup.price_original}</span>
-                      <span className="font-eng text-5xl text-[#BFA588] font-light">{MENU_ITEMS.pickup.price_discount}</span>
-                      <span className="text-xs ml-2 text-text">(税込)</span>
+                   <div className="mb-16 py-10 rounded-sm border-y border-sand/40 bg-canvas/30">
+                      <span className="text-xs text-text-light/50 line-through mr-6 font-light tracking-widest uppercase">Standard {MENU_ITEMS.pickup.price_original}</span>
+                      <span className="font-eng text-6xl text-accent font-light tracking-tighter">{MENU_ITEMS.pickup.price_discount}</span>
+                      <span className="text-xs ml-3 text-text font-light tracking-widest">(税込)</span>
                    </div>
-                   <Button fullWidth onClick={onBook} variant="primary">まずは体験する</Button>
+                   <Button fullWidth onClick={onBook} variant="primary" size="lg" className="shadow-2xl shadow-accent/20">今すぐ体験予約へ進む</Button>
                 </div>
              </div>
           </ScrollReveal>
 
           {/* Right Column: Menu List */}
           <ScrollReveal delay={0.4}>
-             <div className="p-8 md:p-12 border-l border-[#E6DDD3]">
-                <div className="flex items-center gap-3 mb-12">
-                  <Sparkles size={16} className="text-[#BFA588]" />
-                  <h3 className="font-eng text-lg tracking-widest text-text">Standard Menu</h3>
+             <div className="p-8 md:p-12 lg:pl-16">
+                <div className="flex items-center gap-6 mb-20 border-b border-sand pb-8">
+                  <Sparkles size={20} className="text-accent" />
+                  <h3 className="font-eng text-xl tracking-[0.5em] text-text uppercase font-light">Price List</h3>
                 </div>
                 
-                <ul className="space-y-8">
+                <ul className="space-y-12">
                   {MENU_ITEMS.normal.map((item, idx) => (
-                    <li key={idx} className="group py-6 border-b border-[#E6DDD3]/50 last:border-0 hover:pl-4 transition-all duration-500">
-                      <div className="flex flex-col md:flex-row md:justify-between md:items-baseline gap-2">
-                        <span className="font-mincho font-normal text-lg md:text-xl text-text group-hover:text-[#BFA588] transition-colors tracking-wide">
+                    <li key={idx} className="group py-6 transition-all duration-700">
+                      <div className="flex flex-col md:flex-row md:justify-between md:items-baseline gap-4 mb-4">
+                        <span className="font-mincho font-normal text-xl text-text group-hover:text-accent transition-colors tracking-[0.1em]">
                           {item.name}
                         </span>
-                        <span className="font-eng text-base text-text-light font-light">{item.price}</span>
+                        <div className="h-[0.5px] flex-1 bg-sand/50 mx-6 hidden md:block"></div>
+                        <span className="font-eng text-lg text-text-light font-light whitespace-nowrap tracking-wide">{item.price}</span>
                       </div>
+                      <div className="h-[0.5px] w-0 bg-accent/30 group-hover:w-full transition-all duration-1000 ease-in-out"></div>
                     </li>
                   ))}
                 </ul>
 
-                <div className="mt-16 bg-[#F3F1EE] p-10 rounded-sm">
-                   <h4 className="font-mincho text-sm mb-6 text-text tracking-wide border-b border-text/10 pb-2 inline-block">含まれるサービス</h4>
-                   <div className="grid grid-cols-2 gap-y-4 gap-x-8">
-                      {['カウンセリング無料', 'シェービング補助', '肌トラブル保証', 'アフターケア'].map((s, i) => (
-                        <div key={i} className="flex items-center gap-3 text-xs text-text-light font-light">
-                           <div className="w-1.5 h-1.5 rounded-full bg-[#D8C6C6]"></div>
+                <div className="mt-24 bg-white/60 backdrop-blur-md p-12 border border-sand/50 rounded-sm shadow-xl shadow-black/5">
+                   <h4 className="font-mincho text-xs mb-10 text-accent tracking-[0.4em] uppercase border-b border-accent/20 pb-4 inline-block">Service Excellence</h4>
+                   <div className="grid grid-cols-2 gap-y-8 gap-x-12">
+                      {['カウンセリング無料', 'シェービング補助', '肌トラブル保証', 'パウダールーム完備'].map((s, i) => (
+                        <div key={i} className="flex items-center gap-5 text-[14px] text-text-light font-light tracking-wide">
+                           <div className="w-1.5 h-1.5 rounded-full bg-main/60"></div>
                            {s}
                         </div>
                       ))}
