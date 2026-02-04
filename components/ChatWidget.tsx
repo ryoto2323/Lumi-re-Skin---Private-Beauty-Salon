@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import { MessageCircle, X, Send, Loader2, Sparkles } from 'lucide-react';
 
-export const ChatWidget: React.FC = () => {
+const ChatWidget: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<{ role: 'user' | 'model'; text: string }[]>([
     { role: 'model', text: 'こんにちは。Lumière Skinの専任コンシェルジュです。料金や痛みの不安など、何でもご相談ください。' }
@@ -29,7 +29,7 @@ export const ChatWidget: React.FC = () => {
 
     try {
       // 1. APIキーの取得 (Vite環境用)
-      const API_KEY = import.meta.env.VITE_GEMINI_API_KEY;
+      const API_KEY = "AIzaSyCQ5PNXK-3XIETHtV3U-B_zJMEHKoHgd8U";
       
       if (!API_KEY) {
         console.error("API Key not found. Check Cloudflare environment variables.");
@@ -145,3 +145,5 @@ export const ChatWidget: React.FC = () => {
     </div>
   );
 };
+
+export default ChatWidget;
