@@ -3,7 +3,7 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 import { MessageCircle, X, Send, Loader2, Sparkles } from 'lucide-react';
 
 // ★ここにAPIキーを貼り付けてください
-const API_KEY = "AIzaSyCQ5PNXK-3XIETHtV3U-B_zJMEHKoHgd8U"; 
+const API_KEY = ""; 
 
 export const ChatWidget: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
