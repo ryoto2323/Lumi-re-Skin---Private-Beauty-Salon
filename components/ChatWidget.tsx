@@ -31,10 +31,11 @@ export const ChatWidget: React.FC = () => {
     setIsLoading(true);
 
     try {
-      if (!API_KEY) throw new Error("API Key is missing");
+      if (!API_KEY) {
+        throw new Error("API Key is missing");
+      }
 
-      // モデル: gemini-pro (安定版)
-      const genAI const genAI = new GoogleGenerativeAI(API_KEY);
+      const genAI = new GoogleGenerativeAI(API_KEY);
       const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
       const prompt = `
