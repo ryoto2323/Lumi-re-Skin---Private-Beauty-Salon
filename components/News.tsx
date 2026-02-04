@@ -5,7 +5,7 @@ import { ArrowRight } from 'lucide-react';
 
 export const News: React.FC = () => {
   return (
-    <section id="news" className="py-20 bg-canvas border-b border-text/5">
+    <section id="news" className="py-32 bg-canvas border-b border-text/5">
       <div className="container mx-auto px-6 md:px-12 max-w-4xl">
         <ScrollReveal>
           <div className="flex items-end justify-between mb-12">

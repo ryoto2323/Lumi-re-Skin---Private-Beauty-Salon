@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { SectionId, SALON_NAME } from '../constants';
+import { SALON_NAME } from '../constants';
 import { Button } from './ui/Button';
 import { ScrollReveal } from './ui/ScrollReveal';
 
@@ -7,15 +7,15 @@ export const Footer: React.FC = () => {
   const [isMapActive, setIsMapActive] = useState(false);
 
   return (
-    <footer id="footer" className="bg-[#EBE9E5] text-text pt-20 pb-12">
+    <footer id="footer" className="bg-[#2C2A26] text-[#E6DDD3] pt-32 pb-16">
       <div className="container mx-auto px-6 md:px-12">
         
         <ScrollReveal>
-          <div className="flex flex-col md:flex-row justify-between gap-12 mb-16 border-b border-text/10 pb-16">
+          <div className="flex flex-col md:flex-row justify-between gap-16 mb-24 border-b border-[#E6DDD3]/10 pb-20">
             {/* Info */}
             <div className="w-full md:w-1/2">
-               <h3 className="font-eng text-2xl tracking-widest mb-8">{SALON_NAME}</h3>
-               <div className="font-sans font-light text-sm leading-loose space-y-4">
+               <h3 className="font-eng text-4xl tracking-widest mb-12 text-[#E6DDD3] font-light opacity-90">{SALON_NAME}</h3>
+               <div className="font-sans font-light text-sm leading-loose space-y-6 tracking-wide opacity-70">
                  <p>
                    Lumière Skin (ルミエール・スキン) 銀座店<br/>
                    〒104-0061 東京都中央区銀座 1-2-3 (銀座駅 徒歩3分)
@@ -24,22 +24,22 @@ export const Footer: React.FC = () => {
                    平日 11:00-21:00 / 土日祝 10:00-20:00<br/>
                    (定休日: 不定休)
                  </p>
-                 <div className="flex flex-col sm:flex-row gap-4 mt-8">
-                    <Button variant="primary" size="sm" className="bg-text text-white hover:bg-black">WEB予約</Button>
-                    <Button variant="outline" size="sm" className="border-text text-text hover:bg-text hover:text-white">LINE公式アカウント</Button>
+                 <div className="flex flex-col sm:flex-row gap-6 mt-12">
+                    <Button variant="primary" size="sm" className="bg-[#E6DDD3] text-[#2C2A26] hover:bg-white border-none shadow-none">WEB予約</Button>
+                    <Button variant="outline" size="sm" className="border-[#E6DDD3]/30 text-[#E6DDD3] hover:bg-[#E6DDD3] hover:text-[#2C2A26]">LINE公式アカウント</Button>
                  </div>
                </div>
             </div>
 
             {/* Map */}
             <div 
-              className="w-full md:w-1/2 h-[300px] bg-gray-200 grayscale opacity-80 mix-blend-multiply relative group"
+              className="w-full md:w-1/2 h-[350px] bg-[#3A3834] grayscale opacity-60 relative group rounded-sm overflow-hidden border border-[#E6DDD3]/10"
               onClick={() => setIsMapActive(true)}
               onMouseLeave={() => setIsMapActive(false)}
             >
               {!isMapActive && (
-                <div className="absolute inset-0 z-10 flex items-center justify-center cursor-pointer">
-                   <div className="bg-white/80 px-3 py-1 text-[10px] tracking-widest rounded-sm">Click to Interact</div>
+                <div className="absolute inset-0 z-10 flex items-center justify-center cursor-pointer bg-black/40 group-hover:bg-transparent transition-colors">
+                   <div className="bg-white/90 text-[#2C2A26] px-6 py-3 text-[10px] tracking-widest rounded-sm font-medium uppercase shadow-lg">Click to Interact</div>
                 </div>
               )}
               <iframe 
@@ -50,11 +50,12 @@ export const Footer: React.FC = () => {
                 allowFullScreen={false} 
                 loading="lazy" 
                 title="Google Map"
+                className="mix-blend-luminosity hover:mix-blend-normal transition-all duration-1000"
               ></iframe>
             </div>
           </div>
 
-          <div className="text-center font-eng text-[10px] tracking-widest text-text/70">
+          <div className="text-center font-eng text-[10px] tracking-widest text-[#E6DDD3]/30">
              &copy; {SALON_NAME} All Rights Reserved.
           </div>
         </ScrollReveal>

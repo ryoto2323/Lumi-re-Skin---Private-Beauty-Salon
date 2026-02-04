@@ -67,6 +67,7 @@ export const ChatWidget: React.FC = () => {
     setIsLoading(true);
 
     try {
+      // Use process.env.API_KEY as per guidelines
       const apiKey = process.env.API_KEY;
       
       if (!apiKey) {
@@ -77,7 +78,7 @@ export const ChatWidget: React.FC = () => {
         return;
       }
 
-      const ai = new GoogleGenAI({ apiKey });
+      const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
       const systemInstruction = `
         あなたは高級脱毛サロン「Lumière Skin（ルミエール・スキン）」の専任コンシェルジュです。
         以下のブランド情報を元に、お客様の質問に**「上品で、落ち着きがあり、安心感を与える丁寧な敬語」**で答えてください。

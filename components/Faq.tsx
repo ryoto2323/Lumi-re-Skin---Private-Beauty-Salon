@@ -11,7 +11,7 @@ export const Faq: React.FC = () => {
   };
 
   return (
-    <section id={SectionId.FAQ} className="py-24 md:py-32 bg-canvas">
+    <section id={SectionId.FAQ} className="py-32 md:py-48 bg-canvas">
       <div className="container mx-auto px-6 md:px-12 max-w-3xl">
         <ScrollReveal>
           <div className="text-center mb-16">
@@ -32,7 +32,7 @@ export const Faq: React.FC = () => {
                 >
                   <div className="flex items-start gap-4 pr-4">
                     <span className="font-eng text-accent text-xl">Q{idx + 1}</span>
-                    <span className="font-mincho text-text tracking-wide leading-relaxed text-lg">{faq.question}</span>
+                    <span className="font-mincho text-text tracking-wide leading-loose text-lg">{faq.question}</span>
                   </div>
                   <div className="text-accent/50 flex-shrink-0">
                     {openIndex === idx ? <Minus size={16} /> : <Plus size={16} />}

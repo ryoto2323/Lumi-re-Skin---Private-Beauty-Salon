@@ -7,7 +7,7 @@ export const Gallery: React.FC = () => {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
   return (
-    <section id="gallery" className="py-24 bg-white">
+    <section id="gallery" className="py-32 bg-white">
       <div className="container mx-auto px-6 md:px-12">
         <ScrollReveal>
           <div className="text-center mb-16">

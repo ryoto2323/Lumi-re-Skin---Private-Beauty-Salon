@@ -4,7 +4,7 @@ import { ScrollReveal } from './ui/ScrollReveal';
 
 export const Flow: React.FC = () => {
   return (
-    <section id={SectionId.FLOW} className="py-24 md:py-32 bg-white">
+    <section id={SectionId.FLOW} className="py-32 md:py-48 bg-white">
       <div className="container mx-auto px-6 md:px-12">
         <ScrollReveal>
           <div className="text-center mb-20">
@@ -34,7 +34,7 @@ export const Flow: React.FC = () => {
                     <div className="flex flex-col gap-2">
                       <span className="font-eng text-main text-sm tracking-widest">Step.0{idx + 1}</span>
                       <h3 className="font-mincho text-xl text-text tracking-widest mb-2">{step.title}</h3>
-                      <p className="font-sans font-light text-base leading-loose text-text">
+                      <p className="font-sans font-light text-base leading-loose text-text-light">
                         {step.desc}
                       </p>
                     </div>

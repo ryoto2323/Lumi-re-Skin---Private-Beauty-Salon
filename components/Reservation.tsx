@@ -1,52 +1,56 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { SectionId } from '../constants';
 import { ScrollReveal } from './ui/ScrollReveal';
-import { Loader2 } from 'lucide-react';
+import { Loader2, Calendar, ChevronRight } from 'lucide-react';
+import { Button } from './ui/Button';
 
 export const Reservation: React.FC = () => {
-  const [shouldLoad, setShouldLoad] = useState(false);
-  const containerRef = useRef<HTMLDivElement>(null);
+  const [showCalendar, setShowCalendar] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setShouldLoad(true);
-          observer.disconnect();
-        }
-      },
-      { rootMargin: '200px' } // 画面に入る200px手前で読み込み開始
-    );
-
-    if (containerRef.current) {
-      observer.observe(containerRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, []);
+  const handleLoadCalendar = () => {
+    setShowCalendar(true);
+    setTimeout(() => setIsLoading(false), 800);
+  };
 
   return (
-    <section id={SectionId.RESERVATION} className="py-24 md:py-32 bg-white">
-      {/* max-w-xl で幅をさらにコンパクトに制限 */}
-      <div className="container mx-auto px-4 md:px-8 max-w-xl" ref={containerRef}>
+    <section id={SectionId.RESERVATION} className="py-32 md:py-48 bg-transparent">
+      <div className="container mx-auto px-4 md:px-8 max-w-2xl">
         <ScrollReveal>
-          <div className="text-center mb-12">
-            <span className="font-eng text-accent tracking-[0.2em] text-sm block mb-4">Reservation</span>
-            <h2 className="text-2xl md:text-3xl font-mincho text-text tracking-widest mb-4">
+          <div className="text-center mb-16">
+            <span className="font-eng text-accent tracking-[0.2em] text-xs block mb-6 uppercase">Reservation</span>
+            <h2 className="text-3xl md:text-4xl font-mincho text-text tracking-widest font-light mb-4">
               Web予約
             </h2>
-            <p className="text-xs text-text-light">
+            <p className="text-xs text-text-light font-light tracking-widest">
               24時間いつでもご予約いただけます。
             </p>
           </div>
         </ScrollReveal>
 
         <ScrollReveal delay={0.2}>
-          <div className="w-full bg-white shadow-lg border border-gray-100 rounded-sm overflow-hidden min-h-[400px] relative">
-             {shouldLoad ? (
+          <div className="w-full bg-white shadow-2xl shadow-[#D8C6C6]/20 border border-[#E6DDD3] rounded-sm overflow-hidden min-h-[600px] relative transition-all duration-700">
+             
+             {!showCalendar ? (
+                // Cover Design
+                <div className="absolute inset-0 z-10 bg-[#FAFAF8] flex flex-col items-center justify-center p-12 text-center">
+                    <div className="mb-10 relative">
+                       <div className="absolute inset-0 bg-[#BFA588]/10 blur-2xl rounded-full"></div>
+                       <Calendar size={48} className="text-[#BFA588] relative z-10" strokeWidth={0.8} />
+                    </div>
+                    <h3 className="font-mincho text-xl text-text mb-6 tracking-widest font-normal">空き状況を確認・予約する</h3>
+                    <p className="font-sans font-light text-sm text-text-light mb-12 leading-loose opacity-80">
+                       リアルタイムの空き状況をご確認いただけます。<br/>
+                       ご希望の日時を選択して予約へお進みください。
+                    </p>
+                    <Button onClick={handleLoadCalendar} className="group" variant="outline">
+                       カレンダーを表示する <ChevronRight size={14} className="ml-2 group-hover:translate-x-1 transition-transform" />
+                    </Button>
+                </div>
+             ) : (
+               // Iframe Container
                <>
-                 <div className="w-full overflow-hidden">
-                   {/* 高さを600pxに縮小 */}
+                 <div className={`w-full overflow-hidden transition-opacity duration-1000 ${isLoading ? 'opacity-0' : 'opacity-100'}`}>
                    <iframe 
                      title="AirReserve Calendar"
                      className="w-full"
@@ -55,21 +59,17 @@ export const Reservation: React.FC = () => {
                      height="600px" 
                      src="//airrsv.net/demosite0000/calendar/embed/" 
                      loading="lazy"
+                     onLoad={() => setIsLoading(false)}
                    />
                  </div>
-                 <div className="bg-gray-50 px-4 py-2 border-t border-gray-100" style={{textAlign: 'right', fontSize: '10px', color: '#555', lineHeight: '160%'}}>
-                   この予約システムは
-                   <a style={{color: '#555', textDecoration: 'underline', marginLeft: '4px'}} href="https://airregi.jp/reserve/?vos=otrsvxototzzx00000099" target="_blank" rel="noopener noreferrer">
-                     Airリザーブ
-                     <img src="https://cdn.airrsv.net/img/icon/open_link_black.svg" style={{margin: '2px 2px 4px', verticalAlign: 'top', display: 'inline'}} alt="external link" />
-                   </a>
-                   が提供しています
-                 </div>
+                 
+                 {isLoading && (
+                   <div className="absolute inset-0 flex flex-col items-center justify-center bg-[#FAFAF8] z-20">
+                     <Loader2 className="animate-spin text-[#BFA588] mb-4" size={24} strokeWidth={1} />
+                     <p className="font-eng text-xs tracking-widest text-text-light">Loading Calendar...</p>
+                   </div>
+                 )}
                </>
-             ) : (
-               <div className="absolute inset-0 flex items-center justify-center bg-gray-50">
-                 <Loader2 className="animate-spin text-accent" size={32} />
-               </div>
              )}
           </div>
         </ScrollReveal>
