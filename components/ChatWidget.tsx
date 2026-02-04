@@ -2,6 +2,9 @@ import React, { useState, useEffect, useRef } from 'react';
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import { MessageCircle, X, Send, Loader2, Sparkles } from 'lucide-react';
 
+// ★ここにAPIキーを貼り付けてください
+const API_KEY = "AIzaSyCQ5PNXK-3XIETHtV3U-B_zJMEHKoHgd8U"; 
+
 export const ChatWidget: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<{ role: 'user' | 'model'; text: string }[]>([
@@ -28,19 +31,14 @@ export const ChatWidget: React.FC = () => {
     setIsLoading(true);
 
     try {
-      // ★ここに新しいAPIキーを貼り付けてください
-      const API_KEY = "AIzaSyCQ5PNXK-3XIETHtV3U-B_zJMEHKoHgd8U";
+      if (!API_KEY) throw new Error("API Key is missing");
 
-      console.log("Using Key:", API_KEY?.slice(0, 5) + "..."); // ログ確認用
-
-      if (!API_KEY) throw new Error("API Key is empty");
-
-      // モデルを flash に変更（latestなし）
+      // モデル: gemini-pro (安定版)
       const genAI = new GoogleGenerativeAI(API_KEY);
       const model = genAI.getGenerativeModel({ model: "gemini-pro" });
 
       const prompt = `
-        あなたは脱毛サロン「Lumière Skin」のスタッフです。
+        あなたは高級脱毛サロン「Lumière Skin」のスタッフです。
         以下の情報のみを元に、短く丁寧に答えてください。
         料金: 全身1回19,800円、5回89,000円
         特徴: 痛くないSHR脱毛、銀座店
@@ -52,15 +50,9 @@ export const ChatWidget: React.FC = () => {
       const text = response.text();
 
       setMessages(prev => [...prev, { role: 'model', text: text }]);
-
-    } catch (error: any) {
-      console.error("Gemini Error:", error);
-      
-      // ★ここでエラーの「正体」を画面に出します
-      let errorMessage = "エラーが発生しました。";
-      if (error.message) errorMessage += "\n詳細: " + error.message;
-      
-      setMessages(prev => [...prev, { role: 'model', text: errorMessage }]);
+    } catch (error) {
+      console.error("Chat Error:", error);
+      setMessages(prev => [...prev, { role: 'model', text: '申し訳ございません。通信エラーが発生しました。' }]);
     } finally {
       setIsLoading(false);
     }
@@ -88,8 +80,7 @@ export const ChatWidget: React.FC = () => {
                     ? 'bg-[#4A4A4A] text-white rounded-tr-sm' 
                     : 'bg-white text-[#5D5D5D] rounded-tl-sm border border-stone-100'
                 }`}>
-                  {/* 改行を反映させる */}
-                  <div style={{ whiteSpace: 'pre-wrap' }}>{msg.text}</div>
+                  {msg.text}
                 </div>
               </div>
             ))}
