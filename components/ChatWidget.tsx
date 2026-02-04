@@ -59,7 +59,7 @@ export const ChatWidget: React.FC = () => {
     if (!text.trim() || isLoading) return;
 
     // Check if API Key exists
-    const apiKey = process.env.API_KEY;
+    const apiKey = import.meta.env.VITE_API_KEY;
     if (!apiKey) {
       console.error("Gemini API Key is missing. Please set API_KEY in your deployment environment variables.");
       setMessages(prev => [...prev, 
