@@ -67,7 +67,6 @@ export const ChatWidget: React.FC = () => {
     setIsLoading(true);
 
     try {
-      // Use process.env.API_KEY as per guidelines
       const apiKey = process.env.API_KEY;
       
       if (!apiKey) {
